@@ -1,0 +1,6 @@
+---
+import { siteConfig } from '../../site.config';
+import { renderAdSlot } from '../lib/ads';
+const html = renderAdSlot(siteConfig);
+---
+{html && <Fragment set:html={html} />}

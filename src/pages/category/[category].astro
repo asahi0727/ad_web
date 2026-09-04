@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { CATEGORIES, CATEGORY_KEYS, type Category } from '../../lib/categories';
+import { sortByDateDesc } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  return CATEGORY_KEYS.map((category) => ({ params: { category } }));
+}
+
+const category = Astro.params.category as Category;
+const cat = CATEGORIES[category];
+const posts = sortByDateDesc(
+  await getCollection('posts', ({ data }) => !data.draft && data.category === category),
+);
+---
+<BaseLayout title={cat.label} description={`${cat.label}に関する記事一覧`} path={`/category/${category}/`}>
+  <h1 class="page-title">{cat.label}</h1>
+  {posts.length === 0 ? (
+    <p>このカテゴリの記事はまだありません。</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((entry) => <PostCard entry={entry} />)}
+    </ul>
+  )}
+</BaseLayout>

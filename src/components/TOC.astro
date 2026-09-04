@@ -1,0 +1,18 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+const headings = Astro.props.headings.filter((h) => h.depth === 2);
+---
+{headings.length > 0 && (
+  <nav class="toc" aria-label="目次">
+    <div class="toc__title">目次</div>
+    <ol>
+      {headings.map((h) => (
+        <li><a href={`#${h.slug}`}>{h.text}</a></li>
+      ))}
+    </ol>
+  </nav>
+)}
