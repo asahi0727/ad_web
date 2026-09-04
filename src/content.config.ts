@@ -2,9 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { CATEGORY_KEYS, type Category } from './lib/categories';
-
-// Task 4 で src/lib/affiliate.ts に移す。それまではここで定義する
-const AFFILIATE_PROVIDERS = ['rakuten-travel', 'jalan', 'expedia', 'amazon'] as const;
+import { AFFILIATE_PROVIDERS } from './lib/affiliate';
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/posts' }),

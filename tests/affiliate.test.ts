@@ -1,0 +1,69 @@
+import { describe, expect, it } from 'vitest';
+import type { SiteConfig } from '../site.config';
+import { siteConfig } from '../site.config';
+import { buildAffiliateLink, isAffiliateProvider, renderAffiliateBox } from '../src/lib/affiliate';
+
+function configWith(overrides: Partial<SiteConfig['affiliate']>): SiteConfig {
+  return { ...siteConfig, affiliate: { ...siteConfig.affiliate, ...overrides } };
+}
+
+const empty = configWith({});
+
+describe('isAffiliateProvider', () => {
+  it('accepts known providers and rejects others', () => {
+    expect(isAffiliateProvider('rakuten-travel')).toBe(true);
+    expect(isAffiliateProvider('amazon')).toBe(true);
+    expect(isAffiliateProvider('foo')).toBe(false);
+  });
+});
+
+describe('buildAffiliateLink', () => {
+  it('links to the official site when rakuten id is empty', () => {
+    const link = buildAffiliateLink('rakuten-travel', undefined, empty);
+    expect(link.href).toBe('https://travel.rakuten.co.jp/');
+    expect(link.isAffiliate).toBe(false);
+    expect(link.providerLabel).toBe('楽天トラベル');
+  });
+
+  it('wraps the rakuten target with the affiliate id', () => {
+    const cfg = configWith({ rakutenTravel: { id: 'abc.def' } });
+    const link = buildAffiliateLink('rakuten-travel', undefined, cfg);
+    expect(link.href).toBe(
+      'https://hb.afl.rakuten.co.jp/hgc/abc.def/?pc=https%3A%2F%2Ftravel.rakuten.co.jp%2F&m=https%3A%2F%2Ftravel.rakuten.co.jp%2F',
+    );
+    expect(link.isAffiliate).toBe(true);
+  });
+
+  it('uses the configured jalan url as-is', () => {
+    const cfg = configWith({ jalan: { url: 'https://px.a8.net/svt/ejp?a8mat=XYZ' } });
+    expect(buildAffiliateLink('jalan', undefined, cfg).href).toBe('https://px.a8.net/svt/ejp?a8mat=XYZ');
+    expect(buildAffiliateLink('jalan', undefined, empty).href).toBe('https://www.jalan.net/');
+  });
+
+  it('builds an amazon search url with the tag when set', () => {
+    expect(buildAffiliateLink('amazon', 'ネックピロー', empty).href).toBe(
+      'https://www.amazon.co.jp/s?k=%E3%83%8D%E3%83%83%E3%82%AF%E3%83%94%E3%83%AD%E3%83%BC',
+    );
+    const cfg = configWith({ amazon: { tag: 'example-22' } });
+    expect(buildAffiliateLink('amazon', 'ネックピロー', cfg).href).toBe(
+      'https://www.amazon.co.jp/s?k=%E3%83%8D%E3%83%83%E3%82%AF%E3%83%94%E3%83%AD%E3%83%BC&tag=example-22',
+    );
+  });
+});
+
+describe('renderAffiliateBox', () => {
+  it('renders a sponsored link with PR label and escaped text', () => {
+    const html = renderAffiliateBox({ provider: 'amazon', query: 'a&b', label: '<b>探す</b>' }, empty);
+    expect(html).toContain('class="affiliate-box"');
+    expect(html).toContain('rel="sponsored noopener"');
+    expect(html).toContain('target="_blank"');
+    expect(html).toContain('[PR]');
+    expect(html).toContain('&lt;b&gt;探す&lt;/b&gt;');
+    expect(html).not.toContain('<b>探す</b>');
+  });
+
+  it('falls back to a default label built from the provider name', () => {
+    const html = renderAffiliateBox({ provider: 'rakuten-travel' }, empty);
+    expect(html).toContain('楽天トラベルで探す');
+  });
+});
