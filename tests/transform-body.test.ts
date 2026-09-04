@@ -29,7 +29,7 @@ describe('transformBody', () => {
 
   it('replaces [[ad]] with the ad slot (empty when unconfigured)', () => {
     expect(transformBody('<p>a</p><p>[[ad]]</p><p>b</p>', siteConfig, '/')).toBe('<p>a</p><p>b</p>');
-    const cfg = { ...siteConfig, adsense: { client: 'ca-pub-1' } };
+    const cfg = { ...siteConfig, adsense: { client: 'ca-pub-1', slot: '1234567890' } };
     expect(transformBody('<p>[[ad]]</p>', cfg, '/')).toContain('class="ad-slot"');
   });
 

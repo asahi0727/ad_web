@@ -8,6 +8,8 @@ export interface SiteConfig {
   adsense: {
     /** 例: 'ca-pub-1234567890123456'。空なら広告枠を出さない */
     client: string;
+    /** 広告ユニット ID(数字)。client と slot の両方が設定されたときだけ広告枠を出す */
+    slot: string;
   };
   analytics: {
     /** 例: 'G-XXXXXXXXXX'。空ならタグを出さない */
@@ -31,7 +33,7 @@ export const siteConfig: SiteConfig = {
   author: 'そらたび手帖 編集部',
   lang: 'ja',
   contactFormUrl: '',
-  adsense: { client: '' },
+  adsense: { client: '', slot: '' },
   analytics: { ga4: '' },
   affiliate: {
     rakutenTravel: { id: '' },
