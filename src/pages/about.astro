@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../../site.config';
+---
+<BaseLayout title="運営者情報" description={`${siteConfig.title}の運営者情報と、このサイトの方針について`} path="/about/">
+  <h1 class="page-title">運営者情報</h1>
+  <p><strong>サイト名:</strong> {siteConfig.title}</p>
+  <p><strong>運営:</strong> {siteConfig.author}</p>
+  <h2>このサイトについて</h2>
+  <p>{siteConfig.description}</p>
+  <p>記事は AI を活用して下書きを作成し、運営者が内容を確認したうえで公開しています。価格や運航スケジュールなどの変動する情報は原則として記載せず、仕組みや選び方といった時間が経っても役立つ情報を中心にまとめています。</p>
+  <h2>広告について</h2>
+  <p>当サイトはアフィリエイトプログラムに参加しており、記事内のリンクから商品やサービスを申し込まれた場合に運営者が報酬を受け取ることがあります。該当する箇所には [PR] の表記をしています。</p>
+</BaseLayout>

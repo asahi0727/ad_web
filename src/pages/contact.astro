@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../../site.config';
+const url = siteConfig.contactFormUrl;
+---
+<BaseLayout title="お問い合わせ" description={`${siteConfig.title}へのお問い合わせフォーム`} path="/contact/">
+  <h1 class="page-title">お問い合わせ</h1>
+  {url ? (
+    <iframe src={url} width="100%" height="900" title="お問い合わせフォーム">読み込んでいます…</iframe>
+  ) : (
+    <p>お問い合わせフォームは準備中です。しばらくお待ちください。</p>
+  )}
+</BaseLayout>
