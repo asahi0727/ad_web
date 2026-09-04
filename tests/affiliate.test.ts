@@ -40,6 +40,14 @@ describe('buildAffiliateLink', () => {
     expect(buildAffiliateLink('jalan', undefined, empty).href).toBe('https://www.jalan.net/');
   });
 
+  it('uses the configured expedia url as-is', () => {
+    const cfg = configWith({ expedia: { url: 'https://px.a8.net/svt/ejp?a8mat=EXP' } });
+    expect(buildAffiliateLink('expedia', undefined, cfg).href).toBe('https://px.a8.net/svt/ejp?a8mat=EXP');
+    expect(buildAffiliateLink('expedia', undefined, cfg).isAffiliate).toBe(true);
+    expect(buildAffiliateLink('expedia', undefined, empty).href).toBe('https://www.expedia.co.jp/');
+    expect(buildAffiliateLink('expedia', undefined, empty).isAffiliate).toBe(false);
+  });
+
   it('builds an amazon search url with the tag when set', () => {
     expect(buildAffiliateLink('amazon', 'ネックピロー', empty).href).toBe(
       'https://www.amazon.co.jp/s?k=%E3%83%8D%E3%83%83%E3%82%AF%E3%83%94%E3%83%AD%E3%83%BC',
