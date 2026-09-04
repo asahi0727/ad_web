@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../../site.config';
+import { withBase } from '../lib/url';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** ページのパス(例: '/posts/foo/')。canonical と og:url に使う */
+  path?: string;
+}
+
+const { title, description, path = '/' } = Astro.props;
+const canonical = Astro.site ? new URL(withBase(path), Astro.site).href : withBase(path);
+const fullTitle = path === '/' ? siteConfig.title : `${title} | ${siteConfig.title}`;
+const ogType = path.startsWith('/posts/') ? 'article' : 'website';
+---
+<!DOCTYPE html>
+<html lang={siteConfig.lang}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{fullTitle}</title>
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical}>
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml">
+    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={withBase('/rss.xml')}>
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')}>
+    <meta property="og:type" content={ogType}>
+    <meta property="og:title" content={fullTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonical}>
+    <meta property="og:site_name" content={siteConfig.title}>
+    <meta name="twitter:card" content="summary">
+    {siteConfig.adsense.client && (
+      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.adsense.client}`} crossorigin="anonymous" is:inline></script>
+    )}
+    {siteConfig.analytics.ga4 && (
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.ga4}`} is:inline></script>
+    )}
+    {siteConfig.analytics.ga4 && (
+      <script is:inline define:vars={{ id: siteConfig.analytics.ga4 }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', id);
+      </script>
+    )}
+  </head>
+  <body>
+    <SiteHeader />
+    <main class="container">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

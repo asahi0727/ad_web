@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../../site.config';
+import { withBase } from '../lib/url';
+import { CATEGORIES, CATEGORY_KEYS } from '../lib/categories';
+---
+<header class="site-header">
+  <div class="container">
+    <a class="site-header__title" href={withBase('/')}>{siteConfig.title}</a>
+    <nav class="site-nav" aria-label="カテゴリ">
+      {CATEGORY_KEYS.map((key) => (
+        <a href={withBase(`/category/${key}/`)}>{CATEGORIES[key].label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
