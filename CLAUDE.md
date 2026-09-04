@@ -31,6 +31,7 @@ affiliate: ["rakuten-travel"]   # 本文で使ったプレースホルダーの 
 - 事実に自信がない箇所は本文で断定せず、PR 本文の「事実確認が必要な箇所」に列挙する
 - 記事末尾の AI 注記はレイアウトが自動で付けるので本文には書かない
 - h1 は書かない(タイトルはレイアウトが出す)
+- 画像は使わない(画像ファイルやルート相対の画像パスを書かない。アイキャッチはレイアウトが自動生成する)
 
 ## アフィリエイト枠と広告枠
 
@@ -77,3 +78,4 @@ affiliate: ["rakuten-travel"]   # 本文で使ったプレースホルダーの 
 - 設定は `site.config.ts` に集約。アフィリエイト ID や AdSense ID はここに書く
 - 内部リンクは必ず `withBase()` を通す(GitHub Pages のサブパス配信)
 - Astro 7 の Rust コンパイラは閉じタグ必須。`.astro` では void 要素以外を必ず閉じる
+- Git Bash(Windows)で `BASE_PATH=/ad_web npm run build` のように環境変数を渡すときは `MSYS_NO_PATHCONV=1` を先頭に付ける(パス変換で `/ad_web` が壊れるため)
