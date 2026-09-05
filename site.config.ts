@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
   description: '空港ラウンジ、マイル、機材・座席、旅行の準備まで。飛行機旅を少しラクにする情報をまとめています。',
   author: 'そらたび手帖 編集部',
   lang: 'ja',
-  contactFormUrl: '',
+  contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSebUkAJvpt1Ze3xS_BglCgRbj31ClMD-PFq8FQMy6Qy1Xe6_w/viewform?embedded=true',
   adsense: { client: '', slot: '' },
   analytics: { ga4: '' },
   affiliate: {
