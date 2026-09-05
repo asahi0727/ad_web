@@ -19,3 +19,10 @@ export function sortByDateDesc<T extends { data: { pubDate: Date } }>(posts: T[]
 export function formatDate(d: Date): string {
   return `${d.getUTCFullYear()}年${d.getUTCMonth() + 1}月${d.getUTCDate()}日`;
 }
+
+/** 出発案内板用の 09/04 のような表記(UTC 基準) */
+export function formatBoardDate(d: Date): string {
+  const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(d.getUTCDate()).padStart(2, '0');
+  return `${mm}/${dd}`;
+}

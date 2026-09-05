@@ -1,0 +1,23 @@
+---
+/** 時刻表のような記事一覧の 1 行。左バーはカテゴリ色。 */
+import type { CollectionEntry } from 'astro:content';
+import { CATEGORIES } from '../lib/categories';
+import { formatDate, postPath } from '../lib/posts';
+import { withBase } from '../lib/url';
+import Pictogram from './Pictogram.astro';
+
+interface Props {
+  entry: CollectionEntry<'posts'>;
+}
+const { entry } = Astro.props;
+const category = CATEGORIES[entry.data.category];
+const href = withBase(postPath(entry.id));
+---
+<li class="post-row" style={`border-left-color:${category.color}`}>
+  <h3 class="post-row__title"><a href={href}>{entry.data.title}</a></h3>
+  <p class="post-row__desc">{entry.data.description}</p>
+  <div class="post-row__meta">
+    <span class="post-row__cat" style={`color:${category.color}`}><Pictogram category={entry.data.category} size={18} class="post-row__pict" />{category.label}</span>
+    <time class="post-row__date" datetime={entry.data.pubDate.toISOString()}>{formatDate(entry.data.pubDate)}</time>
+  </div>
+</li>

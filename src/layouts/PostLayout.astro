@@ -7,35 +7,43 @@ import { formatDate, postPath } from '../lib/posts';
 import { transformBody } from '../lib/transform-body';
 import { withBase } from '../lib/url';
 import BaseLayout from './BaseLayout.astro';
-import Eyecatch from '../components/Eyecatch.astro';
 import TOC from '../components/TOC.astro';
 import AdSlot from '../components/AdSlot.astro';
 import AiNotice from '../components/AiNotice.astro';
+import Pictogram from '../components/Pictogram.astro';
+import { PHOTOS } from '../lib/photos';
+import { renderPhotoFigure } from '../lib/photo-figure';
 
 interface Props {
   entry: CollectionEntry<'posts'>;
   headings: MarkdownHeading[];
 }
 const { entry, headings } = Astro.props;
-const { title, description, pubDate, updatedDate, category } = entry.data;
+const { title, description, pubDate, updatedDate, category, photo, photos } = entry.data;
 const cat = CATEGORIES[category];
 const path = postPath(entry.id);
 
 // 本文スロットを HTML 文字列にしてからプレースホルダーを展開する
 const rawBody = await Astro.slots.render('default');
-const body = transformBody(rawBody, siteConfig);
+const body = transformBody(rawBody, siteConfig, import.meta.env.BASE_URL, photos);
+const leadPhoto = photo ? renderPhotoFigure(photo) : '';
 ---
-<BaseLayout title={title} description={description} path={path}>
-  <article>
-    <header class="post-header">
-      <a class="badge" href={withBase(`/category/${category}/`)} style={`background:${cat.color}`}>{cat.label}</a>
-      <h1 class="post-header__title">{title}</h1>
-      <div class="post-header__meta">
-        <span>公開: <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
-        {updatedDate && <span>更新: <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+<BaseLayout title={title} description={description} path={path} currentCategory={category}>
+  <header class="sign-panel" slot="before-main" style={`background-image:url(${withBase(PHOTOS[category].src)})`}>
+    <div class="container sign-panel__inner">
+      <div>
+        <a class="sign-panel__cat" href={withBase(`/category/${category}/`)}>{cat.label}</a>
+        <h1 class="sign-panel__title">{title}</h1>
+        <div class="sign-panel__meta">
+          <span>公開 <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
+          {updatedDate && <span>更新 <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+        </div>
       </div>
-      <Eyecatch class="post-eyecatch" category={category} title={title} />
-    </header>
+      <Pictogram category={category} size={96} class="sign-panel__pict" />
+    </div>
+  </header>
+  <article>
+    {leadPhoto && <Fragment set:html={leadPhoto} />}
     <AdSlot />
     <TOC headings={headings} />
     <div class="post-body" set:html={body}></div>

@@ -31,7 +31,18 @@ affiliate: ["rakuten-travel"]   # 本文で使ったプレースホルダーの 
 - 事実に自信がない箇所は本文で断定せず、PR 本文の「事実確認が必要な箇所」に列挙する
 - 記事末尾の AI 注記はレイアウトが自動で付けるので本文には書かない
 - h1 は書かない(タイトルはレイアウトが出す)
-- 画像は使わない(画像ファイルやルート相対の画像パスを書かない。アイキャッチはレイアウトが自動生成する)
+- 本文に `![]()` や画像パスを書かない。写真は下記「記事写真」の手順で frontmatter に登録し、先頭写真はレイアウトが本文の前に表示、本文中の写真は `[[photo:id]]` の位置に展開される
+
+## 記事写真(先頭 1 枚 + 本文中 1〜2 枚)
+
+Wikimedia Commons の自由ライセンス写真を `scripts/photo.mjs` で取り込む。
+
+1. `node scripts/photo.mjs search "<英語の検索語>"` を実行する。検索語は「具体的な物や場所」を 1〜3 語で(例: `airport lounge`、`economy class seats`、`Haneda airport`)。候補が 0 件なら語を減らす
+2. 表示されたサムネイル(`.photo-candidates/N.jpg`)を Read で実際に見て選ぶ。選ばないもの: 人物の顔が主役、ロゴや商品名が主役、事故・災害・不快な場面、暗すぎる・ぼけている・縦長、記事の題材と無関係
+3. `node scripts/photo.mjs pick <番号> <slug> --alt "<写真の内容を表す日本語 20〜60 字>"` を実行する。`public/photos/posts/<slug>.webp` が作られ、frontmatter に貼る `photo:` ブロックが表示される
+4. その `photo:` ブロックを frontmatter の末尾に貼る。`author` `license` `source` は書き換えない(クレジット表示に使う)
+5. 本文中の写真も 1〜2 枚入れる。`node scripts/photo.mjs pick <番号> <slug> --id <id> --alt "<説明>"` で取り込むと(id は `seats` `lounge-food` のような短い英字)、frontmatter の `photos:` に足す項目と、本文に書く `[[photo:<id>]]` が表示される。`[[photo:<id>]]` は写真が説明を助ける h2 の最初の段落の直後に、単独の段落として置く。登録していない id を本文に書くとビルドが失敗する
+6. 良い候補が見つからない場合は写真なしで進めてよい(`photo` も `photos` も任意)。無理に関係の薄い写真を使わない。1 記事の写真は合計 3 枚まで
 
 ## アフィリエイト枠と広告枠
 
@@ -70,7 +81,7 @@ affiliate: ["rakuten-travel"]   # 本文で使ったプレースホルダーの 
 4. 記事を書く。`topics/backlog.md` を更新する
 5. `npm test && npm run build` を実行し、成功を確認する
 6. ブランチ `post/YYYY-MM-DD-slug` を作り、コミットし、PR を作る
-7. PR 本文に「要約」「事実確認が必要な箇所」「使ったアフィリエイト枠」「内部リンク先」を列挙する
+7. PR 本文に「要約」「事実確認が必要な箇所」「使ったアフィリエイト枠」「内部リンク先」「写真の出典」を列挙する
 
 ## 開発者向けメモ
 
