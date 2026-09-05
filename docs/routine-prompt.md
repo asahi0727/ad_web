@@ -3,7 +3,8 @@
 ## 基本設定
 
 - 名前: weekly-travel-post
-- リポジトリ: https://github.com/<ユーザー名>/ad_web
+- リポジトリ: https://github.com/asahi0727/ad_web
+- 作成済み: 2026-09-05(ID: trig_01KUVmJExRph6sG38ymWfhLG、https://claude.ai/code/routines)
 - cron: `0 0 * * 1`(毎週月曜 9:00 JST)
 - モデル: claude-sonnet-5
 - allowed_tools: Bash, Read, Write, Edit, Glob, Grep
