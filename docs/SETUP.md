@@ -40,7 +40,8 @@
 記事内の「楽天トラベルで探す」リンクが成果報酬付きになります。
 
 1. https://affiliate.rakuten.co.jp/ を開き、楽天 ID でログインして登録する(楽天 ID が無ければ先に作る)。
-2. 登録後、管理画面の「リンク作成」→ どれか商品を選ぶと、リンクの URL に `hgc/xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx/` のような英数字が含まれる。これがアフィリエイト ID。控えておく。
+2. 登録後、楽天にログインしたまま https://webservice.rakuten.co.jp/account_affiliate_id/ を開く。「アフィリエイト ID」として `xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx`(英数字 8 桁がドットで 4 つ)が表示されるので控える。
+   - 別の方法: https://affiliate.rakuten.co.jp/ の上部にある検索欄で適当な商品を検索し、商品の「リンクを作成」ボタンを押すと、表示されるリンクコードの中に `hb.afl.rakuten.co.jp/hgc/xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx/` という部分がある。この `hgc/` と次の `/` の間がアフィリエイト ID。
 3. このプロジェクトを Claude Code で開き、次のように頼む。
 
    ```
