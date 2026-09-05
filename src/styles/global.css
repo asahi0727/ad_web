@@ -46,8 +46,9 @@ p { margin: 0 0 1.1rem; }
 .sign-nav a:hover, .sign-nav a[aria-current="page"] { color: var(--yellow); box-shadow: inset 0 -4px 0 var(--yellow); }
 
 /* ---------- 出発案内板(トップの主役) ---------- */
-.board { background: var(--navy-deep); color: #fff; }
-.board .container { padding-top: 1.75rem; padding-bottom: 2rem; }
+.board { position: relative; background-color: var(--navy-deep); background-size: cover; background-position: center 45%; color: #fff; }
+.board::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 29, 56, 0.96) 0%, rgba(14, 29, 56, 0.88) 55%, rgba(14, 29, 56, 0.66) 100%); }
+.board .container { position: relative; padding-top: 1.75rem; padding-bottom: 2rem; }
 .board__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: 0.6rem; border-bottom: 3px solid var(--yellow); }
 .board__title { font-size: 1.15rem; font-weight: 900; color: var(--yellow); letter-spacing: 0.04em; }
 .board__note { font-size: 0.82rem; font-weight: 500; opacity: 0.75; }
@@ -96,9 +97,10 @@ main { flex: 1; padding: 2.25rem 0 3.5rem; }
 
 /* カテゴリ案内 */
 .category-signs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
-.category-signs a { display: grid; grid-template-columns: 8px auto 1fr; align-items: center; gap: 0.8rem; padding: 0.7rem 1rem 0.7rem 0; background: var(--floor); color: var(--ink); text-decoration: none; font-weight: 700; line-height: 1.4; }
+.category-signs a { display: grid; grid-template-columns: 8px 104px auto 1fr; align-items: center; gap: 0.8rem; padding: 0 1rem 0 0; min-height: 72px; background: var(--floor); color: var(--ink); text-decoration: none; font-weight: 700; line-height: 1.4; }
 .category-signs a:hover { background: var(--navy); color: #fff; }
 .category-signs__bar { align-self: stretch; }
+.category-signs__photo { width: 104px; height: 100%; min-height: 72px; object-fit: cover; display: block; align-self: stretch; }
 .category-signs__pict { color: var(--navy); }
 .category-signs a:hover .category-signs__pict { color: var(--yellow); }
 .category-signs__count { display: block; font-size: 0.8rem; font-weight: 500; opacity: 0.75; font-variant-numeric: tabular-nums; }
@@ -118,9 +120,15 @@ main { flex: 1; padding: 2.25rem 0 3.5rem; }
 .post-row__date { display: block; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .empty { padding: 2rem 0; color: var(--ink-soft); }
 
+/* 写真クレジット(運営者情報) */
+.credits { list-style: none; padding: 0; margin: 0; }
+.credits li { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--rule); font-size: 0.9rem; }
+.credits__thumb { width: 120px; height: 52px; object-fit: cover; display: block; }
+
 /* ---------- 記事ページ ---------- */
-.sign-panel { background: var(--navy-deep); color: #fff; }
-.sign-panel .container { padding-top: 2rem; padding-bottom: 2.25rem; }
+.sign-panel { position: relative; background-color: var(--navy-deep); background-size: cover; background-position: center; color: #fff; }
+.sign-panel::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 29, 56, 0.95) 0%, rgba(14, 29, 56, 0.86) 60%, rgba(14, 29, 56, 0.6) 100%); }
+.sign-panel .container { position: relative; padding-top: 2rem; padding-bottom: 2.25rem; }
 .sign-panel__inner { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
 .sign-panel__pict { color: var(--yellow); flex: none; }
 .sign-panel__cat { display: inline-block; color: var(--yellow); font-weight: 700; font-size: 0.95rem; text-decoration: none; }
@@ -181,6 +189,9 @@ main { flex: 1; padding: 2.25rem 0 3.5rem; }
   .post-row { grid-template-columns: 1fr; }
   .post-row__meta { grid-column: 1; grid-row: auto; text-align: left; margin-top: 0.3rem; }
   .post-row__cat { margin-right: 0.9rem; }
+  .category-signs a { grid-template-columns: 8px 88px auto 1fr; }
+  .category-signs__photo { width: 88px; }
+  .board::before, .sign-panel::before { background: rgba(14, 29, 56, 0.88); }
   .sign-panel__inner { grid-template-columns: 1fr; gap: 0.5rem; }
   .sign-panel__pict { width: 56px; height: 56px; order: -1; }
   .sign-panel__title { font-size: 1.5rem; }

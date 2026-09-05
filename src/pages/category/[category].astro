@@ -5,6 +5,8 @@ import PostRow from '../../components/PostRow.astro';
 import { CATEGORIES, CATEGORY_KEYS, type Category } from '../../lib/categories';
 import { sortByDateDesc } from '../../lib/posts';
 import Pictogram from '../../components/Pictogram.astro';
+import { PHOTOS } from '../../lib/photos';
+import { withBase } from '../../lib/url';
 
 export async function getStaticPaths() {
   return CATEGORY_KEYS.map((category) => ({ params: { category } }));
@@ -17,7 +19,15 @@ const posts = sortByDateDesc(
 );
 ---
 <BaseLayout title={cat.label} description={`${cat.label}に関する記事一覧`} path={`/category/${category}/`} wide currentCategory={category}>
-  <h1 class="page-title" style={`border-color:${cat.color}`}><Pictogram category={category} size={36} class="page-title__pict" />{cat.label}</h1>
+  <header class="sign-panel" slot="before-main" style={`background-image:url(${withBase(PHOTOS[category].src)})`}>
+    <div class="container container--wide sign-panel__inner">
+      <div>
+        <h1 class="sign-panel__title">{cat.label}</h1>
+        <div class="sign-panel__meta"><span>{posts.length} 記事</span></div>
+      </div>
+      <Pictogram category={category} size={96} class="sign-panel__pict" />
+    </div>
+  </header>
   {posts.length === 0 ? (
     <p class="empty">このカテゴリの記事はまだありません。毎週 1 本ずつ増えていきます。</p>
   ) : (

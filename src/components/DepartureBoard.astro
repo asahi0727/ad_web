@@ -8,13 +8,14 @@ import { CATEGORIES } from '../lib/categories';
 import { formatBoardDate, postPath } from '../lib/posts';
 import { withBase } from '../lib/url';
 import Pictogram from './Pictogram.astro';
+import { PHOTOS } from '../lib/photos';
 
 interface Props {
   posts: CollectionEntry<'posts'>[];
 }
 const { posts } = Astro.props;
 ---
-<section class="board" aria-labelledby="board-title">
+<section class="board" aria-labelledby="board-title" style={`background-image:url(${withBase(PHOTOS.hero.src)})`}>
   <div class="container container--wide">
     <div class="board__head">
       <h2 class="board__title" id="board-title">新着記事</h2>

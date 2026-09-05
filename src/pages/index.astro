@@ -8,6 +8,7 @@ import { CATEGORIES, CATEGORY_KEYS } from '../lib/categories';
 import { sortByDateDesc } from '../lib/posts';
 import { withBase } from '../lib/url';
 import Pictogram from '../components/Pictogram.astro';
+import { PHOTOS } from '../lib/photos';
 
 const BOARD_SIZE = 5;
 const posts = sortByDateDesc(await getCollection('posts', ({ data }) => !data.draft));
@@ -24,7 +25,8 @@ const counts = Object.fromEntries(CATEGORY_KEYS.map((key) => [key, posts.filter(
         <li>
           <a href={withBase(`/category/${key}/`)}>
             <span class="category-signs__bar" style={`background:${CATEGORIES[key].color}`}></span>
-            <Pictogram category={key} size={34} class="category-signs__pict" />
+            <img class="category-signs__photo" src={withBase(PHOTOS[key].srcSmall)} alt="" width="800" height="350" loading="lazy" decoding="async" />
+            <Pictogram category={key} size={30} class="category-signs__pict" />
             <span>{CATEGORIES[key].label}<span class="category-signs__count">{counts[key]} 記事</span></span>
           </a>
         </li>

@@ -11,6 +11,7 @@ import TOC from '../components/TOC.astro';
 import AdSlot from '../components/AdSlot.astro';
 import AiNotice from '../components/AiNotice.astro';
 import Pictogram from '../components/Pictogram.astro';
+import { PHOTOS } from '../lib/photos';
 
 interface Props {
   entry: CollectionEntry<'posts'>;
@@ -26,7 +27,7 @@ const rawBody = await Astro.slots.render('default');
 const body = transformBody(rawBody, siteConfig);
 ---
 <BaseLayout title={title} description={description} path={path} currentCategory={category}>
-  <header class="sign-panel" slot="before-main">
+  <header class="sign-panel" slot="before-main" style={`background-image:url(${withBase(PHOTOS[category].src)})`}>
     <div class="container sign-panel__inner">
       <div>
         <a class="sign-panel__cat" href={withBase(`/category/${category}/`)}>{cat.label}</a>
