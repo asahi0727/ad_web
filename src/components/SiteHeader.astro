@@ -1,23 +1,28 @@
 ---
 import { siteConfig } from '../../site.config';
 import { withBase } from '../lib/url';
-import { CATEGORIES, CATEGORY_KEYS } from '../lib/categories';
+import { CATEGORIES, CATEGORY_KEYS, type Category } from '../lib/categories';
+
+interface Props {
+  /** 現在表示中のカテゴリ(ナビの現在位置表示に使う) */
+  currentCategory?: Category;
+}
+const { currentCategory } = Astro.props;
 ---
-<header class="site-header">
+<header class="sign-bar">
   <div class="container container--wide">
-    <a class="site-header__brand" href={withBase('/')}>
-      <svg class="site-header__logo" viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="22" fill="#ffffff" fill-opacity="0.18"></circle>
-        <path d="M10 26 L22 22 L30 12 L34 12 L30 22 L40 21 Q44 21 44 24 Q44 27 40 27 L30 26 L34 36 L30 36 L22 26 L12 30 Z" fill="#ffffff"></path>
+    <a class="brand" href={withBase('/')}>
+      <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M6 27 L20 22 L29 9 L35 9 L30 22 L42 21 Q47 21 47 24 Q47 27 42 27 L30 26 L35 39 L29 39 L20 26 L9 31 Z" fill="#f6c544"></path>
       </svg>
       <span>
-        <span class="site-header__title">{siteConfig.title}</span>
-        <span class="site-header__tagline">飛行機旅を少しラクにする情報サイト</span>
+        <span class="brand__name">{siteConfig.title}</span>
+        <span class="brand__tagline">飛行機旅を少しラクにする情報サイト</span>
       </span>
     </a>
-    <nav class="site-nav" aria-label="カテゴリ">
+    <nav class="sign-nav" aria-label="カテゴリ">
       {CATEGORY_KEYS.map((key) => (
-        <a href={withBase(`/category/${key}/`)}>{CATEGORIES[key].label}</a>
+        <a href={withBase(`/category/${key}/`)} aria-current={key === currentCategory ? 'page' : undefined}>{CATEGORIES[key].label}</a>
       ))}
     </nav>
   </div>

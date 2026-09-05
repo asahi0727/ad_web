@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDate, postPath, postSlug, sortByDateDesc } from '../src/lib/posts';
+import { formatBoardDate, formatDate, postPath, postSlug, sortByDateDesc } from '../src/lib/posts';
 
 describe('postSlug', () => {
   it('strips the YYYY-MM-DD- prefix from the entry id', () => {
@@ -31,5 +31,12 @@ describe('sortByDateDesc', () => {
 describe('formatDate', () => {
   it('formats as Japanese year/month/day', () => {
     expect(formatDate(new Date(Date.UTC(2026, 8, 4)))).toBe('2026年9月4日');
+  });
+});
+
+describe('formatBoardDate', () => {
+  it('formats as zero-padded MM/DD for the departure board', () => {
+    expect(formatBoardDate(new Date(Date.UTC(2026, 8, 4)))).toBe('09/04');
+    expect(formatBoardDate(new Date(Date.UTC(2026, 11, 25)))).toBe('12/25');
   });
 });

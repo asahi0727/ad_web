@@ -1,21 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostCard from '../components/PostCard.astro';
+import DepartureBoard from '../components/DepartureBoard.astro';
+import PostRow from '../components/PostRow.astro';
 import { siteConfig } from '../../site.config';
+import { CATEGORIES, CATEGORY_KEYS } from '../lib/categories';
 import { sortByDateDesc } from '../lib/posts';
+import { withBase } from '../lib/url';
 
+const BOARD_SIZE = 5;
 const posts = sortByDateDesc(await getCollection('posts', ({ data }) => !data.draft));
+const latest = posts.slice(0, BOARD_SIZE);
+const counts = Object.fromEntries(CATEGORY_KEYS.map((key) => [key, posts.filter((p) => p.data.category === key).length]));
 ---
 <BaseLayout title={siteConfig.title} description={siteConfig.description} path="/" wide>
-  <section class="hero" slot="before-main">
-    <div class="container container--wide">
-      <h1 class="hero__title">{siteConfig.title}</h1>
-      <p class="hero__lead">{siteConfig.description}</p>
-    </div>
+  <DepartureBoard posts={latest} slot="before-main" />
+
+  <section class="section" aria-labelledby="cat-title">
+    <h2 class="section-title" id="cat-title">カテゴリから探す</h2>
+    <ul class="category-signs">
+      {CATEGORY_KEYS.map((key) => (
+        <li>
+          <a href={withBase(`/category/${key}/`)}>
+            <span class="category-signs__bar" style={`background:${CATEGORIES[key].color}`}></span>
+            <span>{CATEGORIES[key].label}<span class="category-signs__count">{counts[key]} 記事</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
-  <h2 class="section-title">新着記事</h2>
-  <ul class="post-list">
-    {posts.map((entry) => <PostCard entry={entry} />)}
-  </ul>
+
+  <section class="section" aria-labelledby="all-title">
+    <h2 class="section-title" id="all-title">記事一覧</h2>
+    <ul class="timetable">
+      {posts.map((entry) => <PostRow entry={entry} />)}
+    </ul>
+  </section>
 </BaseLayout>

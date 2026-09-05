@@ -7,7 +7,6 @@ import { formatDate, postPath } from '../lib/posts';
 import { transformBody } from '../lib/transform-body';
 import { withBase } from '../lib/url';
 import BaseLayout from './BaseLayout.astro';
-import Eyecatch from '../components/Eyecatch.astro';
 import TOC from '../components/TOC.astro';
 import AdSlot from '../components/AdSlot.astro';
 import AiNotice from '../components/AiNotice.astro';
@@ -25,17 +24,18 @@ const path = postPath(entry.id);
 const rawBody = await Astro.slots.render('default');
 const body = transformBody(rawBody, siteConfig);
 ---
-<BaseLayout title={title} description={description} path={path}>
-  <article>
-    <header class="post-header">
-      <a class="badge" href={withBase(`/category/${category}/`)} style={`background:${cat.color}`}>{cat.label}</a>
-      <h1 class="post-header__title">{title}</h1>
-      <div class="post-header__meta">
-        <span>公開: <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
-        {updatedDate && <span>更新: <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+<BaseLayout title={title} description={description} path={path} currentCategory={category}>
+  <header class="sign-panel" slot="before-main">
+    <div class="container">
+      <a class="sign-panel__cat" href={withBase(`/category/${category}/`)}>{cat.label}</a>
+      <h1 class="sign-panel__title">{title}</h1>
+      <div class="sign-panel__meta">
+        <span>公開 <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
+        {updatedDate && <span>更新 <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
       </div>
-      <Eyecatch class="post-eyecatch" category={category} title={title} />
-    </header>
+    </div>
+  </header>
+  <article>
     <AdSlot />
     <TOC headings={headings} />
     <div class="post-body" set:html={body}></div>

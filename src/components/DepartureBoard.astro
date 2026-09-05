@@ -1,0 +1,32 @@
+---
+/**
+ * 出発案内板。新着記事を便名のように並べる。
+ * 日付 / 記事タイトル / カテゴリ(黄色) の 3 列。
+ */
+import type { CollectionEntry } from 'astro:content';
+import { CATEGORIES } from '../lib/categories';
+import { formatBoardDate, postPath } from '../lib/posts';
+import { withBase } from '../lib/url';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+const { posts } = Astro.props;
+---
+<section class="board" aria-labelledby="board-title">
+  <div class="container container--wide">
+    <div class="board__head">
+      <h2 class="board__title" id="board-title">新着記事</h2>
+      <span class="board__note">毎週 1 本ずつ増えていきます</span>
+    </div>
+    <ol class="board__rows">
+      {posts.map((entry) => (
+        <li class="board__row">
+          <time class="board__date" datetime={entry.data.pubDate.toISOString()}>{formatBoardDate(entry.data.pubDate)}</time>
+          <span class="board__dest"><a href={withBase(postPath(entry.id))}>{entry.data.title}</a></span>
+          <span class="board__gate">{CATEGORIES[entry.data.category].label}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -18,7 +18,7 @@
 | ホスティング | GitHub Pages(GitHub Actions ソース) | 無料。将来は Cloudflare Pages + 独自ドメインへ移行可能 |
 | CI/CD | GitHub Actions `deploy.yml` | main へのマージで自動ビルド・公開 |
 | 記事生成 | Claude Code クラウド定期実行 | 追加課金なし。GitHub リポジトリをクローンして PR を作成できる |
-| 画像 | 生成画像なし。カテゴリ別 SVG アイキャッチをサイト内で自動生成 | 費用ゼロ、著作権リスクゼロ |
+| 画像 | 使わない。空港の案内サインをモチーフにした配色と書体で見せる | 費用ゼロ、著作権リスクゼロ |
 
 ## 3. リポジトリ構成
 
@@ -31,7 +31,7 @@ ad_web/
 │   ├── content.config.ts   # コンテンツコレクションのスキーマ定義
 │   ├── content/
 │   │   └── posts/          # 記事 Markdown(1 記事 1 ファイル、YYYY-MM-DD-slug.md)
-│   ├── components/         # AffiliateBox, AdSlot, TOC, PostCard, Eyecatch
+│   ├── components/         # SiteHeader, SiteFooter, DepartureBoard, PostRow, TOC, AdSlot, AiNotice
 │   ├── layouts/            # BaseLayout, PostLayout
 │   ├── pages/              # index, posts/[slug], category/[category], about, privacy, contact
 │   └── styles/             # global.css
@@ -61,9 +61,9 @@ ad_web/
 
 - **アフィリエイト枠(プレースホルダー方式)**: 素の Markdown ではコンポーネントを直接書けない(MDX が必要になる)ため、本文には単独段落として `[[affiliate:rakuten-travel|検索語|リンク文言]]` と書く。`PostLayout` が本文 HTML を `Astro.slots.render` で取得し、純粋関数 `transformBody()` がリンクボックス HTML に展開する。`site.config.ts` の ID が未設定なら公式サイトへの通常リンクになり、サイトは壊れない。`rel="sponsored noopener"` と `[PR]` 表記を必ず付ける。同じ仕組みで `[[ad]]` を広告枠に展開し、本文中のルート相対リンクに base を付与する。
 - **AdSlot**: AdSense のクライアント ID が設定されているときのみ広告枠を描画。未設定なら何も出力しない。
-- **Eyecatch**: カテゴリとタイトルからカテゴリ別配色の SVG を生成し、記事ページと一覧カードにインライン表示する。SNS クローラーは SVG を OGP 画像として扱わないため、記事ごとの OGP 画像は生成しない(`og:title` / `og:description` / `og:url` のみ出力)。
+- **アイキャッチ**: 使わない(2026-09-05 のデザイン刷新で廃止)。記事タイトルは紺のサイン板に大きく表示し、SNS 用の画像は生成しない(`og:title` / `og:description` / `og:url` のみ出力)。
 - **TOC**: h2 のみから目次を生成する(h3 はネスト処理を避けるため含めない)。
-- **PostCard**: 一覧用カード。
+- **DepartureBoard / PostRow**: トップの出発案内板(新着 5 件)と、時刻表のような記事一覧の行。
 - **AiNotice**: 記事末尾の定型注記「この記事は AI を活用して執筆しています。価格・運航情報などは必ず公式サイトでご確認ください」。PostLayout が自動挿入する。
 
 ## 6. 必須ページ

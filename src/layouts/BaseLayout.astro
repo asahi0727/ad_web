@@ -4,6 +4,7 @@ import { siteConfig } from '../../site.config';
 import { withBase } from '../lib/url';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import type { Category } from '../lib/categories';
 
 interface Props {
   title: string;
@@ -12,9 +13,11 @@ interface Props {
   path?: string;
   /** 一覧ページなど、本文幅を広くとる場合に true */
   wide?: boolean;
+  /** ヘッダーのカテゴリナビに現在位置を出す */
+  currentCategory?: Category;
 }
 
-const { title, description, path = '/', wide = false } = Astro.props;
+const { title, description, path = '/', wide = false, currentCategory } = Astro.props;
 const canonical = Astro.site ? new URL(withBase(path), Astro.site).href : withBase(path);
 const fullTitle = path === '/' ? siteConfig.title : `${title} | ${siteConfig.title}`;
 const ogType = path.startsWith('/posts/') ? 'article' : 'website';
@@ -31,7 +34,7 @@ const ogType = path.startsWith('/posts/') ? 'article' : 'website';
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
     <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={withBase('/rss.xml')}>
     <link rel="sitemap" href={withBase('/sitemap-index.xml')}>
     <meta property="og:type" content={ogType}>
@@ -56,7 +59,7 @@ const ogType = path.startsWith('/posts/') ? 'article' : 'website';
     )}
   </head>
   <body>
-    <SiteHeader />
+    <SiteHeader currentCategory={currentCategory} />
     <slot name="before-main" />
     <main class:list={['container', { 'container--wide': wide }]}>
       <slot />
