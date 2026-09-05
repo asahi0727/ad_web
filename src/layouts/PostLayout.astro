@@ -18,7 +18,7 @@ interface Props {
   headings: MarkdownHeading[];
 }
 const { entry, headings } = Astro.props;
-const { title, description, pubDate, updatedDate, category } = entry.data;
+const { title, description, pubDate, updatedDate, category, photo } = entry.data;
 const cat = CATEGORIES[category];
 const path = postPath(entry.id);
 
@@ -41,6 +41,14 @@ const body = transformBody(rawBody, siteConfig);
     </div>
   </header>
   <article>
+    {photo && (
+      <figure class="post-photo">
+        <img src={withBase(photo.src)} alt={photo.alt} width="1600" height="900" decoding="async" />
+        <figcaption>
+          {photo.alt}(撮影: {photo.author} / <a href={photo.licenseUrl} target="_blank" rel="noopener">{photo.license}</a> / <a href={photo.source} target="_blank" rel="noopener">出典</a>)
+        </figcaption>
+      </figure>
+    )}
     <AdSlot />
     <TOC headings={headings} />
     <div class="post-body" set:html={body}></div>

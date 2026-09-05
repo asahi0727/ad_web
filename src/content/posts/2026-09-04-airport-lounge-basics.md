@@ -5,6 +5,13 @@ pubDate: 2026-09-04
 category: lounge
 tags: ["ラウンジ", "初心者向け"]
 affiliate: ["rakuten-travel"]
+photo:
+  src: "/photos/posts/airport-lounge-basics.webp"
+  alt: "空港の駐機場を望む窓際に並んだラウンジのソファ席"
+  author: "Calistemon"
+  license: "CC BY-SA 4.0"
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Virgin_Australia_Lounge_Perth_Airport_Terminal_1_-_Domestic,_June_2022_03.jpg"
 ---
 
 飛行機に乗る前の待ち時間を快適に過ごせるのが空港ラウンジです。ただ、一口にラウンジといっても種類があり、入れる条件や中でできることはそれぞれ違います。この記事では、初めて空港ラウンジを使う人がつまずきやすいポイントに絞って、基本から整理します。

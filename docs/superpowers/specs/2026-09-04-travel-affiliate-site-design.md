@@ -62,6 +62,7 @@ ad_web/
 - **アフィリエイト枠(プレースホルダー方式)**: 素の Markdown ではコンポーネントを直接書けない(MDX が必要になる)ため、本文には単独段落として `[[affiliate:rakuten-travel|検索語|リンク文言]]` と書く。`PostLayout` が本文 HTML を `Astro.slots.render` で取得し、純粋関数 `transformBody()` がリンクボックス HTML に展開する。`site.config.ts` の ID が未設定なら公式サイトへの通常リンクになり、サイトは壊れない。`rel="sponsored noopener"` と `[PR]` 表記を必ず付ける。同じ仕組みで `[[ad]]` を広告枠に展開し、本文中のルート相対リンクに base を付与する。
 - **AdSlot**: AdSense のクライアント ID が設定されているときのみ広告枠を描画。未設定なら何も出力しない。
 - **写真**: `src/lib/photos.ts` にカテゴリ別 6 枚とトップ用 1 枚を定義。出発案内板・記事タイトル板・カテゴリページの背景(紺を透かして重ねる)と、トップのカテゴリ板のサムネイルに使う。CC BY / CC BY-SA の写真は運営者情報ページの「写真について」でクレジットを表示する。
+- **記事写真**: 1 記事 1 枚、frontmatter の `photo`(src / alt / author / license / licenseUrl / source)に登録する。`scripts/photo.mjs` が Wikimedia Commons を検索し、候補サムネイルを保存して選ばせ、1600x900 の WebP を `public/photos/posts/<slug>.webp` に書き出す。PostLayout が本文の前に写真とクレジットを表示する。写真は任意で、良い候補が無ければ省略する。
 - **アイキャッチ**: 使わない(2026-09-05 のデザイン刷新で廃止)。記事タイトルは紺のサイン板に大きく表示し、SNS 用の画像は生成しない(`og:title` / `og:description` / `og:url` のみ出力)。
 - **TOC**: h2 のみから目次を生成する(h3 はネスト処理を避けるため含めない)。
 - **DepartureBoard / PostRow**: トップの出発案内板(新着 5 件)と、時刻表のような記事一覧の行。
@@ -82,7 +83,7 @@ Claude Code のクラウド定期実行を週 1 回設定する(曜日・時刻�
 
 1. `CLAUDE.md` と `topics/backlog.md` を読む
 2. 「未消化」から 1 件選ぶ。`src/content/posts/` の既存記事と題材が重複しないか確認する
-3. 記事 Markdown を 1 本作成する(3,000〜4,000 字、h2/h3 構成、まとめ、AffiliateBox の挿入、既存記事への内部リンク 2 本以上)
+3. 記事 Markdown を 1 本作成する(3,000〜4,000 字、h2/h3 構成、まとめ、AffiliateBox の挿入、既存記事への内部リンク 2 本以上)。`scripts/photo.mjs` で記事写真を 1 枚選び、frontmatter に登録する
 4. `backlog.md` の該当行を「消化済み」に移す。未消化が 5 件未満なら新ネタを 10 件追記する
 5. `npm ci && npm run build` でビルドが通ることを確認する
 6. ブランチ `post/YYYY-MM-DD-slug` を切り、PR を作成する。PR 本文に「要約」「事実確認が必要な箇所」「使った AffiliateBox」「内部リンク先」を列挙する

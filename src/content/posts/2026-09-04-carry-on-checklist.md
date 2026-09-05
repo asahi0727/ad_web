@@ -5,6 +5,13 @@ pubDate: 2026-09-04
 category: goods
 tags: ["持ち物", "チェックリスト"]
 affiliate: ["amazon"]
+photo:
+  src: "/photos/posts/carry-on-checklist.webp"
+  alt: "空港のカウンター前に置かれたキャリーケースとボストンバッグ"
+  author: "Billy Hathorn"
+  license: "CC BY 3.0"
+  licenseUrl: "https://creativecommons.org/licenses/by/3.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Luggage_awaiting_loading_at_airport_IMG_3140.JPG"
 ---
 
 機内持ち込み荷物は「あると快適な物」と「持ち込めない物」を分けて考えると整理しやすくなります。荷物の中身を毎回ゼロから考えるのは手間がかかるので、判断の軸をあらかじめ持っておくと準備がぐっと楽になります。この記事では、出発前に確認しておきたい項目を、考え方とチェックリストの両面からまとめます。

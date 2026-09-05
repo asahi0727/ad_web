@@ -5,6 +5,13 @@ pubDate: 2026-09-05
 category: aircraft
 tags: ["座席", "初心者向け"]
 affiliate: ["amazon"]
+photo:
+  src: "/photos/posts/airplane-seat-selection-guide.webp"
+  alt: "窓側から通路側へ並ぶエコノミークラスの座席"
+  author: "Vincent Desjardins"
+  license: "CC BY 2.0"
+  licenseUrl: "https://creativecommons.org/licenses/by/2.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Delta_767-400ER_Economy_Cabin.jpg"
 ---
 
 飛行機の座席は、どこに座るかでフライトの快適さが大きく変わります。窓側と通路側のどちらが良いかは人によって答えが違いますし、非常口座席のように条件付きの席もあります。この記事では、座席の種類ごとの特徴と、自分に合った席を選ぶための考え方を整理します。

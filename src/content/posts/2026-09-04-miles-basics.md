@@ -5,6 +5,13 @@ pubDate: 2026-09-04
 category: miles
 tags: ["マイル", "初心者向け"]
 affiliate: ["rakuten-travel"]
+photo:
+  src: "/photos/posts/miles-basics.webp"
+  alt: "青空と雲海の上を飛ぶ旅客機の主翼"
+  author: "Tobias1984"
+  license: "CC BY-SA 3.0"
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Airplane_wing_sky_and_clouds.jpg"
 ---
 
 「マイルを貯めるとタダで飛行機に乗れる」とよく聞きますが、何がどう貯まって、何に使えるのかは意外と分かりにくいものです。この記事では、マイルの仕組みを全体像から整理し、初めての人がつまずきやすいポイントをまとめます。
