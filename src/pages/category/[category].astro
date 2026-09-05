@@ -15,8 +15,8 @@ const posts = sortByDateDesc(
   await getCollection('posts', ({ data }) => !data.draft && data.category === category),
 );
 ---
-<BaseLayout title={cat.label} description={`${cat.label}に関する記事一覧`} path={`/category/${category}/`}>
-  <h1 class="page-title">{cat.label}</h1>
+<BaseLayout title={cat.label} description={`${cat.label}に関する記事一覧`} path={`/category/${category}/`} wide>
+  <h1 class="page-title" style={`border-color:${cat.color}`}>{cat.label}</h1>
   {posts.length === 0 ? (
     <p>このカテゴリの記事はまだありません。</p>
   ) : (

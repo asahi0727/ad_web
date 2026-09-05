@@ -4,8 +4,17 @@ import { withBase } from '../lib/url';
 import { CATEGORIES, CATEGORY_KEYS } from '../lib/categories';
 ---
 <header class="site-header">
-  <div class="container">
-    <a class="site-header__title" href={withBase('/')}>{siteConfig.title}</a>
+  <div class="container container--wide">
+    <a class="site-header__brand" href={withBase('/')}>
+      <svg class="site-header__logo" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="#ffffff" fill-opacity="0.18"></circle>
+        <path d="M10 26 L22 22 L30 12 L34 12 L30 22 L40 21 Q44 21 44 24 Q44 27 40 27 L30 26 L34 36 L30 36 L22 26 L12 30 Z" fill="#ffffff"></path>
+      </svg>
+      <span>
+        <span class="site-header__title">{siteConfig.title}</span>
+        <span class="site-header__tagline">飛行機旅を少しラクにする情報サイト</span>
+      </span>
+    </a>
     <nav class="site-nav" aria-label="カテゴリ">
       {CATEGORY_KEYS.map((key) => (
         <a href={withBase(`/category/${key}/`)}>{CATEGORIES[key].label}</a>

@@ -7,8 +7,14 @@ import { sortByDateDesc } from '../lib/posts';
 
 const posts = sortByDateDesc(await getCollection('posts', ({ data }) => !data.draft));
 ---
-<BaseLayout title={siteConfig.title} description={siteConfig.description} path="/">
-  <h1 class="page-title">新着記事</h1>
+<BaseLayout title={siteConfig.title} description={siteConfig.description} path="/" wide>
+  <section class="hero" slot="before-main">
+    <div class="container container--wide">
+      <h1 class="hero__title">{siteConfig.title}</h1>
+      <p class="hero__lead">{siteConfig.description}</p>
+    </div>
+  </section>
+  <h2 class="section-title">新着記事</h2>
   <ul class="post-list">
     {posts.map((entry) => <PostCard entry={entry} />)}
   </ul>

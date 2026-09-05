@@ -4,7 +4,9 @@ import { withBase } from '../lib/url';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
-  <div class="container">
+  <div class="container container--wide">
+    <div class="site-footer__brand">{siteConfig.title}</div>
+    <p class="site-footer__desc">{siteConfig.description}</p>
     <nav aria-label="サイト情報">
       <a href={withBase('/about/')}>運営者情報</a>
       <a href={withBase('/privacy/')}>プライバシーポリシー</a>
