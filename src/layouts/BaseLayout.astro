@@ -24,6 +24,7 @@ const ogType = path.startsWith('/posts/') ? 'article' : 'website';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{fullTitle}</title>
     <meta name="description" content={description}>
+    {siteConfig.analytics.searchConsole && <meta name="google-site-verification" content={siteConfig.analytics.searchConsole}>}
     <link rel="canonical" href={canonical}>
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml">
     <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={withBase('/rss.xml')}>
