@@ -68,12 +68,25 @@ describe('buildAffiliateLink', () => {
 describe('renderAffiliateBox', () => {
   it('renders a sponsored link with PR label and escaped text', () => {
     const html = renderAffiliateBox({ provider: 'amazon', query: 'a&b', label: '<b>探す</b>' }, empty);
-    expect(html).toContain('class="affiliate-box"');
+    expect(html).toContain('class="affiliate-box affiliate-box--goods"');
     expect(html).toContain('rel="sponsored noopener"');
     expect(html).toContain('target="_blank"');
     expect(html).toContain('[PR]');
     expect(html).toContain('&lt;b&gt;探す&lt;/b&gt;');
     expect(html).not.toContain('<b>探す</b>');
+  });
+
+  it('shows a pictogram, a provider note, the search term and a provider button', () => {
+    const html = renderAffiliateBox({ provider: 'rakuten-travel', query: '羽田 ホテル', label: '羽田のホテルを探す' }, empty);
+    expect(html).toContain('affiliate-box--hotel');
+    expect(html).toContain('<svg');
+    expect(html).toContain('class="affiliate-box__heading">羽田のホテルを探す<');
+    expect(html).toContain('楽天トラベルの検索結果を開きます');
+    expect(html).toContain('検索語: 「羽田 ホテル」');
+    expect(html).toContain('>楽天トラベルで探す</a>');
+    const amazon = renderAffiliateBox({ provider: 'amazon' }, empty);
+    expect(amazon).toContain('affiliate-box--goods');
+    expect(amazon).not.toContain('検索語');
   });
 
   it('falls back to a default label built from the provider name', () => {

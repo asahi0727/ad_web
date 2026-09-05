@@ -6,7 +6,7 @@ describe('transformBody', () => {
   it('expands an affiliate placeholder paragraph into a link box', () => {
     const html = '<p>前置き</p><p>[[affiliate:rakuten-travel|羽田 ホテル|羽田のホテルを探す]]</p><p>後書き</p>';
     const out = transformBody(html, siteConfig, '/');
-    expect(out).toContain('<p>前置き</p><div class="affiliate-box">');
+    expect(out).toContain('<p>前置き</p><div class="affiliate-box affiliate-box--hotel">');
     expect(out).toContain('羽田のホテルを探す');
     expect(out).toContain('rel="sponsored noopener"');
     expect(out).not.toContain('[[affiliate');

@@ -162,11 +162,32 @@ main { flex: 1; padding: 2.25rem 0 3.5rem; }
 .post-body code { background: var(--floor); padding: 0.1em 0.35em; font-size: 0.92em; }
 
 /* アフィリエイト枠: 黄色のサイン板(空港では黄色が「重要案内」) */
-.affiliate-box { background: var(--yellow); color: var(--navy); padding: 1.15rem 1.35rem 1.1rem; margin: 2.25rem 0; }
-.affiliate-box__provider { display: block; font-size: 0.82rem; font-weight: 700; }
-.affiliate-box__link { display: inline-block; margin: 0.45rem 0 0.5rem; padding: 0.6rem 1.3rem; background: var(--navy); color: #fff; font-weight: 700; text-decoration: none; }
-.affiliate-box__link:hover { background: var(--navy-deep); color: #fff; }
-.affiliate-box__pr { display: block; font-size: 0.76rem; font-weight: 500; opacity: 0.8; }
+/* アフィリエイト枠: 黄色のサイン板。左に紺のピクトグラム、右に見出し・説明・ボタン */
+.affiliate-box {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 1.1rem;
+  align-items: start;
+  background: var(--yellow);
+  color: var(--navy);
+  border-left: 8px solid var(--navy);
+  padding: 1.15rem 1.35rem 1.1rem 1.15rem;
+  margin: 2.25rem 0;
+}
+.affiliate-box__icon { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: var(--navy); color: var(--yellow); }
+.affiliate-box__body { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+.affiliate-box__provider { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; }
+.affiliate-box__heading { font-size: 1.15rem; font-weight: 900; line-height: 1.45; }
+.affiliate-box__note { font-size: 0.85rem; font-weight: 500; line-height: 1.7; opacity: 0.9; }
+.affiliate-box__query { display: block; font-weight: 700; }
+.affiliate-box__link { align-self: flex-start; display: inline-block; margin: 0.5rem 0 0.35rem; padding: 0.65rem 1.4rem; background: var(--navy); color: #fff; font-weight: 700; text-decoration: none; box-shadow: 0 3px 0 var(--navy-deep); }
+.affiliate-box__link:hover { background: var(--navy-deep); color: #fff; transform: translateY(1px); box-shadow: 0 2px 0 var(--navy-deep); }
+.affiliate-box__pr { font-size: 0.74rem; font-weight: 500; opacity: 0.75; }
+@media (max-width: 480px) {
+  .affiliate-box { grid-template-columns: 1fr; gap: 0.6rem 0; }
+  .affiliate-box__icon { width: 48px; height: 48px; }
+  .affiliate-box__icon svg { width: 30px; height: 30px; }
+}
 
 .ad-slot { margin: 2rem 0; text-align: center; }
 .ai-notice { margin-top: 3rem; padding: 0.85rem 1.1rem; background: var(--floor); font-size: 0.85rem; color: var(--ink-soft); }
