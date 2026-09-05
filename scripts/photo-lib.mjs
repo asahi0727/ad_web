@@ -99,3 +99,22 @@ export function toFrontmatter(photo) {
     `  source: ${q(photo.source)}`,
   ].join('\n');
 }
+
+/**
+ * pick コマンドの引数を解釈する。
+ * 例: ['3', 'my-slug', '--id', 'seats', '--alt', '説明'] → { index: 3, slug: 'my-slug', id: 'seats', alt: '説明' }
+ */
+export function parsePickArgs(args) {
+  const opts = { alt: '', id: '' };
+  const positional = [];
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i] === '--alt' || args[i] === '--id') {
+      opts[args[i].slice(2)] = args[i + 1] ?? '';
+      i += 1;
+    } else {
+      positional.push(args[i]);
+    }
+  }
+  const [index, slug] = positional;
+  return { index: Number(index), slug: slug ?? '', ...opts };
+}

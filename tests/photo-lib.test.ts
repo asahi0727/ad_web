@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cropBox, normalizeLicense, stripHtml, toCandidate, toFrontmatter } from '../scripts/photo-lib.mjs';
+import { cropBox, normalizeLicense, parsePickArgs, stripHtml, toCandidate, toFrontmatter, toPhotosItem } from '../scripts/photo-lib.mjs';
 
 function page(overrides: Record<string, unknown> = {}, meta: Record<string, string> = {}) {
   const extmetadata = Object.fromEntries(Object.entries({ LicenseShortName: 'CC BY 4.0', Artist: 'Someone', ...meta }).map(([k, v]) => [k, { value: v }]));
@@ -59,5 +59,27 @@ describe('stripHtml / toFrontmatter', () => {
     expect(yaml.split('\n')[0]).toBe('photo:');
     expect(yaml).toContain('  alt: "a \\"b\\""');
     expect(yaml).toContain('  src: "/photos/posts/x.webp"');
+  });
+});
+
+describe('parsePickArgs', () => {
+  it('reads index and slug with --alt only', () => {
+    expect(parsePickArgs(['0', 'my-slug', '--alt', '説明'])).toEqual({ index: 0, slug: 'my-slug', alt: '説明', id: '' });
+  });
+
+  it('reads --id in any position', () => {
+    expect(parsePickArgs(['--id', 'seats', '3', 'my-slug', '--alt', 'a'])).toEqual({ index: 3, slug: 'my-slug', alt: 'a', id: 'seats' });
+  });
+
+  it('tolerates missing values', () => {
+    expect(parsePickArgs(['1'])).toEqual({ index: 1, slug: '', alt: '', id: '' });
+  });
+});
+
+describe('toPhotosItem', () => {
+  it('produces a list item with the id first', () => {
+    const yaml = toPhotosItem({ id: 'x', src: '/photos/posts/s-x.webp', alt: 'a', author: 'b', license: 'CC0', licenseUrl: 'https://l', source: 'https://s' });
+    expect(yaml.split(String.fromCharCode(10))[0]).toBe('  - id: "x"');
+    expect(yaml).toContain('    src: "/photos/posts/s-x.webp"');
   });
 });

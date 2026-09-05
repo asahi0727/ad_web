@@ -18,7 +18,7 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
-import { cropBox, toCandidate, toFrontmatter, toPhotosItem } from './photo-lib.mjs';
+import { cropBox, parsePickArgs, toCandidate, toFrontmatter, toPhotosItem } from './photo-lib.mjs';
 
 const UA = 'soratabi-techo/1.0 (https://github.com/asahi0727/ad_web)';
 const WORK = '.photo-candidates';
@@ -117,13 +117,8 @@ try {
     if (!query) throw new Error('検索語を指定してください');
     await search(query, limit);
   } else if (cmd === 'pick') {
-    const altIdx = args.indexOf('--alt');
-    const alt = altIdx >= 0 ? args[altIdx + 1] : '';
-    const idIdx = args.indexOf('--id');
-    const id = idIdx >= 0 ? args[idIdx + 1] : '';
-    const skip = new Set([altIdx, altIdx + 1, idIdx, idIdx + 1]);
-    const [index, slug] = args.filter((_, i) => !skip.has(i));
-    await pick(Number(index), slug, alt, id);
+    const { index, slug, alt, id } = parsePickArgs(args);
+    await pick(index, slug, alt, id);
   } else {
     console.log('使い方:\n  node scripts/photo.mjs search "<query>" [--limit 8]\n  node scripts/photo.mjs pick <番号> <slug> --alt "<代替テキスト>"\n  node scripts/photo.mjs pick <番号> <slug> --id <id> --alt "<代替テキスト>"   (本文用)');
     process.exitCode = 1;
