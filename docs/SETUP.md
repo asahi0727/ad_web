@@ -13,6 +13,7 @@
 | GitHub リポジトリの作成と push | 済み |
 | GitHub Pages の有効化(ソース: GitHub Actions) | 済み。main に push すると数分で自動公開 |
 | 記事作成ルーチンの作成 | 済み(weekly-travel-post、毎週月曜 9:00 JST、claude-sonnet-5) |
+| Claude GitHub App のインストール | **未完了**。これが無いとルーチンが PR を作れない(下の「D」を参照) |
 
 ## 毎週やること(所要 5〜10 分)
 
@@ -23,6 +24,16 @@
 5. 直したい点があれば「Conversation」タブの一番下で「Close pull request」を押す。直してほしい内容を `topics/backlog.md` の「未消化」に 1 行で書き足しておくと、次回以降のネタになる。
 
 ## これからやること
+
+### D. Claude GitHub App をインストールする(最優先、無料、3 分)
+
+記事作成ルーチンはクラウドで動き、GitHub へ push するときに「Claude GitHub App」の権限を使います。初回実行では記事が書けたのに push が 403 で拒否されました。
+
+1. ブラウザで GitHub に **asahi0727** としてログインしていることを確認する(右上のアイコン)。
+2. https://github.com/apps/claude/installations/select_target を開く。
+3. アカウント一覧から **asahi0727** を選ぶ。
+4. 「Only select repositories」を選び、**ad_web** にチェックを入れて「Install」を押す。
+5. 済んだら Claude Code に「ルーチンをもう一度実行して」と頼む。数分後に https://github.com/asahi0727/ad_web/pulls に PR が出れば完了。
 
 ### A. 楽天アフィリエイトに登録する(無料、審査なし、15 分)
 
