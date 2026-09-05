@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostRow from '../../components/PostRow.astro';
 import { CATEGORIES, CATEGORY_KEYS, type Category } from '../../lib/categories';
 import { sortByDateDesc } from '../../lib/posts';
+import Pictogram from '../../components/Pictogram.astro';
 
 export async function getStaticPaths() {
   return CATEGORY_KEYS.map((category) => ({ params: { category } }));
@@ -16,7 +17,7 @@ const posts = sortByDateDesc(
 );
 ---
 <BaseLayout title={cat.label} description={`${cat.label}に関する記事一覧`} path={`/category/${category}/`} wide currentCategory={category}>
-  <h1 class="page-title" style={`border-color:${cat.color}`}>{cat.label}</h1>
+  <h1 class="page-title" style={`border-color:${cat.color}`}><Pictogram category={category} size={36} class="page-title__pict" />{cat.label}</h1>
   {posts.length === 0 ? (
     <p class="empty">このカテゴリの記事はまだありません。毎週 1 本ずつ増えていきます。</p>
   ) : (

@@ -10,6 +10,7 @@ import BaseLayout from './BaseLayout.astro';
 import TOC from '../components/TOC.astro';
 import AdSlot from '../components/AdSlot.astro';
 import AiNotice from '../components/AiNotice.astro';
+import Pictogram from '../components/Pictogram.astro';
 
 interface Props {
   entry: CollectionEntry<'posts'>;
@@ -26,13 +27,16 @@ const body = transformBody(rawBody, siteConfig);
 ---
 <BaseLayout title={title} description={description} path={path} currentCategory={category}>
   <header class="sign-panel" slot="before-main">
-    <div class="container">
-      <a class="sign-panel__cat" href={withBase(`/category/${category}/`)}>{cat.label}</a>
-      <h1 class="sign-panel__title">{title}</h1>
-      <div class="sign-panel__meta">
-        <span>公開 <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
-        {updatedDate && <span>更新 <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+    <div class="container sign-panel__inner">
+      <div>
+        <a class="sign-panel__cat" href={withBase(`/category/${category}/`)}>{cat.label}</a>
+        <h1 class="sign-panel__title">{title}</h1>
+        <div class="sign-panel__meta">
+          <span>公開 <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time></span>
+          {updatedDate && <span>更新 <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time></span>}
+        </div>
       </div>
+      <Pictogram category={category} size={96} class="sign-panel__pict" />
     </div>
   </header>
   <article>
