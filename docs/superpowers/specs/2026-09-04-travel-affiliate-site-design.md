@@ -62,7 +62,7 @@ ad_web/
 - **アフィリエイト枠(プレースホルダー方式)**: 素の Markdown ではコンポーネントを直接書けない(MDX が必要になる)ため、本文には単独段落として `[[affiliate:rakuten-travel|検索語|リンク文言]]` と書く。`PostLayout` が本文 HTML を `Astro.slots.render` で取得し、純粋関数 `transformBody()` がリンクボックス HTML に展開する。`site.config.ts` の ID が未設定なら公式サイトへの通常リンクになり、サイトは壊れない。`rel="sponsored noopener"` と `[PR]` 表記を必ず付ける。同じ仕組みで `[[ad]]` を広告枠に展開し、本文中のルート相対リンクに base を付与する。
 - **AdSlot**: AdSense のクライアント ID が設定されているときのみ広告枠を描画。未設定なら何も出力しない。
 - **写真**: `src/lib/photos.ts` にカテゴリ別 6 枚とトップ用 1 枚を定義。出発案内板・記事タイトル板・カテゴリページの背景(紺を透かして重ねる)と、トップのカテゴリ板のサムネイルに使う。CC BY / CC BY-SA の写真は運営者情報ページの「写真について」でクレジットを表示する。
-- **記事写真**: 1 記事 1 枚、frontmatter の `photo`(src / alt / author / license / licenseUrl / source)に登録する。`scripts/photo.mjs` が Wikimedia Commons を検索し、候補サムネイルを保存して選ばせ、1600x900 の WebP を `public/photos/posts/<slug>.webp` に書き出す。PostLayout が本文の前に写真とクレジットを表示する。写真は任意で、良い候補が無ければ省略する。
+- **記事写真**: 1 記事 1 枚、frontmatter の `photo`(src / alt / author / license / licenseUrl / source)に登録する。`scripts/photo.mjs` が Wikimedia Commons を検索し、候補サムネイルを保存して選ばせ、1600x900 の WebP を `public/photos/posts/<slug>.webp` に書き出す。PostLayout が本文の前に写真とクレジットを表示する。本文中の写真は frontmatter の `photos[]`(id 付き)に登録し、本文の単独段落 `[[photo:id]]` の位置に `transformBody()` が展開する(未登録 id はビルドエラー)。写真は任意で、良い候補が無ければ省略する。1 記事 3 枚まで。
 - **アイキャッチ**: 使わない(2026-09-05 のデザイン刷新で廃止)。記事タイトルは紺のサイン板に大きく表示し、SNS 用の画像は生成しない(`og:title` / `og:description` / `og:url` のみ出力)。
 - **TOC**: h2 のみから目次を生成する(h3 はネスト処理を避けるため含めない)。
 - **DepartureBoard / PostRow**: トップの出発案内板(新着 5 件)と、時刻表のような記事一覧の行。

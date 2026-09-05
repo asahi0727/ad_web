@@ -12,6 +12,14 @@ photo:
   license: "CC BY-SA 4.0"
   licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
   source: "https://commons.wikimedia.org/wiki/File:Virgin_Australia_Lounge_Perth_Airport_Terminal_1_-_Domestic,_June_2022_03.jpg"
+photos:
+  - id: "buffet"
+    src: "/photos/posts/airport-lounge-basics-buffet.webp"
+    alt: "ラウンジのビュッフェカウンターに並んだ軽食"
+    author: "G. Edward Johnson"
+    license: "CC BY 4.0"
+    licenseUrl: "https://creativecommons.org/licenses/by/4.0/"
+    source: "https://commons.wikimedia.org/wiki/File:Escape_Lounge_buffet_Tulsa_OK_TUL_2025-07-21_16-37-43.jpg"
 ---
 
 飛行機に乗る前の待ち時間を快適に過ごせるのが空港ラウンジです。ただ、一口にラウンジといっても種類があり、入れる条件や中でできることはそれぞれ違います。この記事では、初めて空港ラウンジを使う人がつまずきやすいポイントに絞って、基本から整理します。
@@ -34,6 +42,8 @@ photo:
 ## 航空会社ラウンジの特徴
 
 ### 誰が使えるのか
+
+[[photo:buffet]]
 
 航空会社ラウンジは、その航空会社の上級会員資格を持つ人や、上位クラスの航空券で搭乗する人向けに用意されています。同じ航空会社グループであっても、提携する他社のラウンジを使える場合と使えない場合があるため、事前に対象範囲を確認しておくと安心です。上級会員資格は、搭乗実績の積み重ねや、対象となるクレジットカードの保有によって得られる仕組みが一般的です。
 

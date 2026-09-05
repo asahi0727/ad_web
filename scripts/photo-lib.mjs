@@ -72,6 +72,20 @@ export function cropBox(width, height, ratio) {
   return { left: 0, top: Math.floor((height - h) / 2), width, height: h };
 }
 
+/** frontmatter の photos: 配列に足す 1 項目(YAML) */
+export function toPhotosItem(photo) {
+  const q = (s) => JSON.stringify(String(s));
+  return [
+    `  - id: ${q(photo.id)}`,
+    `    src: ${q(photo.src)}`,
+    `    alt: ${q(photo.alt)}`,
+    `    author: ${q(photo.author)}`,
+    `    license: ${q(photo.license)}`,
+    `    licenseUrl: ${q(photo.licenseUrl)}`,
+    `    source: ${q(photo.source)}`,
+  ].join('\n');
+}
+
 /** frontmatter に貼る photo ブロック(YAML) */
 export function toFrontmatter(photo) {
   const q = (s) => JSON.stringify(String(s));

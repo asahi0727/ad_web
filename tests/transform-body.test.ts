@@ -44,3 +44,26 @@ describe('transformBody', () => {
     expect(out).toContain('href="/posts/foo/"');
   });
 });
+
+describe('transformBody photos', () => {
+  const photos = [
+    { id: 'seats', src: '/photos/posts/foo-seats.webp', alt: '座席', author: 'X', license: 'CC0', licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/', source: 'https://commons.wikimedia.org/wiki/File:Foo.jpg' },
+  ];
+
+  it('expands [[photo:id]] into a figure with credit', () => {
+    const out = transformBody('<h2>a</h2><p>[[photo:seats]]</p><p>b</p>', siteConfig, '/repo', photos);
+    expect(out).toContain('<h2>a</h2><figure class="post-photo">');
+    expect(out).toContain('src="/repo/photos/posts/foo-seats.webp"');
+    expect(out).toContain('撮影: X');
+    expect(out).not.toContain('[[photo');
+  });
+
+  it('fails the build for an unregistered photo id', () => {
+    expect(() => transformBody('<p>[[photo:nope]]</p>', siteConfig, '/', photos)).toThrow(/nope/);
+  });
+
+  it('leaves photo placeholders alone inside code blocks', () => {
+    const src = '<pre><code>[[photo:seats]]</code></pre>';
+    expect(transformBody(src, siteConfig, '/', photos)).toBe(src);
+  });
+});

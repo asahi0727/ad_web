@@ -12,6 +12,14 @@ photo:
   license: "CC BY 3.0"
   licenseUrl: "https://creativecommons.org/licenses/by/3.0/"
   source: "https://commons.wikimedia.org/wiki/File:Luggage_awaiting_loading_at_airport_IMG_3140.JPG"
+photos:
+  - id: "security"
+    src: "/photos/posts/carry-on-checklist-security.webp"
+    alt: "国内線の保安検査場の入口と案内表示"
+    author: "Project Kei"
+    license: "CC BY-SA 4.0"
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+    source: "https://commons.wikimedia.org/wiki/File:Domestic_security_check_at_Oita_Airport.jpg"
 ---
 
 機内持ち込み荷物は「あると快適な物」と「持ち込めない物」を分けて考えると整理しやすくなります。荷物の中身を毎回ゼロから考えるのは手間がかかるので、判断の軸をあらかじめ持っておくと準備がぐっと楽になります。この記事では、出発前に確認しておきたい項目を、考え方とチェックリストの両面からまとめます。
@@ -56,6 +64,8 @@ photo:
 ## 持ち込みに制限がある物
 
 ### なぜ制限があるのか
+
+[[photo:security]]
 
 液体や刃物、バッテリー類に制限が設けられているのは、機内の安全を保つための保安上の理由によるものです。制限の内容は各国の規制や航空会社の方針によって定められており、時期や路線によって細かい運用が変わることもあります。
 

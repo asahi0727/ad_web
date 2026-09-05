@@ -12,19 +12,21 @@ import AdSlot from '../components/AdSlot.astro';
 import AiNotice from '../components/AiNotice.astro';
 import Pictogram from '../components/Pictogram.astro';
 import { PHOTOS } from '../lib/photos';
+import { renderPhotoFigure } from '../lib/photo-figure';
 
 interface Props {
   entry: CollectionEntry<'posts'>;
   headings: MarkdownHeading[];
 }
 const { entry, headings } = Astro.props;
-const { title, description, pubDate, updatedDate, category, photo } = entry.data;
+const { title, description, pubDate, updatedDate, category, photo, photos } = entry.data;
 const cat = CATEGORIES[category];
 const path = postPath(entry.id);
 
 // 本文スロットを HTML 文字列にしてからプレースホルダーを展開する
 const rawBody = await Astro.slots.render('default');
-const body = transformBody(rawBody, siteConfig);
+const body = transformBody(rawBody, siteConfig, import.meta.env.BASE_URL, photos);
+const leadPhoto = photo ? renderPhotoFigure(photo) : '';
 ---
 <BaseLayout title={title} description={description} path={path} currentCategory={category}>
   <header class="sign-panel" slot="before-main" style={`background-image:url(${withBase(PHOTOS[category].src)})`}>
@@ -41,14 +43,7 @@ const body = transformBody(rawBody, siteConfig);
     </div>
   </header>
   <article>
-    {photo && (
-      <figure class="post-photo">
-        <img src={withBase(photo.src)} alt={photo.alt} width="1600" height="900" decoding="async" />
-        <figcaption>
-          {photo.alt}(撮影: {photo.author} / <a href={photo.licenseUrl} target="_blank" rel="noopener">{photo.license}</a> / <a href={photo.source} target="_blank" rel="noopener">出典</a>)
-        </figcaption>
-      </figure>
-    )}
+    {leadPhoto && <Fragment set:html={leadPhoto} />}
     <AdSlot />
     <TOC headings={headings} />
     <div class="post-body" set:html={body}></div>

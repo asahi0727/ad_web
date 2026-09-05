@@ -9,12 +9,16 @@
  *
  *   node scripts/photo.mjs pick <番号> <slug> --alt "<日本語の代替テキスト>"
  *     選んだ候補を 1600x900 の WebP に変換して public/photos/posts/<slug>.webp に保存し、
- *     frontmatter に貼る photo ブロックを表示する。
+ *     frontmatter に貼る photo ブロック(先頭写真)を表示する。
+ *
+ *   node scripts/photo.mjs pick <番号> <slug> --id <id> --alt "<日本語の代替テキスト>"
+ *     本文中に置く写真。public/photos/posts/<slug>-<id>.webp に保存し、
+ *     frontmatter の photos に足す項目と、本文に書く [[photo:<id>]] を表示する。
  */
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
-import { cropBox, toCandidate, toFrontmatter } from './photo-lib.mjs';
+import { cropBox, toCandidate, toFrontmatter, toPhotosItem } from './photo-lib.mjs';
 
 const UA = 'soratabi-techo/1.0 (https://github.com/asahi0727/ad_web)';
 const WORK = '.photo-candidates';
@@ -75,27 +79,33 @@ async function search(query, limit) {
   console.log('サムネイルを Read で確認して、node scripts/photo.mjs pick <番号> <slug> --alt "<代替テキスト>" で取り込む');
 }
 
-async function pick(index, slug, alt) {
+async function pick(index, slug, alt, id) {
   const { rows } = JSON.parse(await readFile(path.join(WORK, 'candidates.json'), 'utf8'));
   const c = rows.find((r) => r.index === index);
   if (!c) throw new Error(`候補 #${index} がありません。先に search を実行してください`);
   if (!/^[a-z0-9-]+$/.test(slug)) throw new Error('slug は英小文字・数字・ハイフンのみ');
   if (!alt) throw new Error('--alt "<代替テキスト>" を指定してください');
+  if (id && !/^[a-z0-9-]+$/.test(id)) throw new Error('--id は英小文字・数字・ハイフンのみ');
+  const name = id ? `${slug}-${id}` : slug;
   const bytes = await fetchBytes(c.thumb);
   const meta = await sharp(bytes).metadata();
   const box = cropBox(meta.width, meta.height, WIDTH / HEIGHT);
   await mkdir(OUT_DIR, { recursive: true });
-  const outPath = path.join(OUT_DIR, `${slug}.webp`);
+  const outPath = path.join(OUT_DIR, `${name}.webp`);
   await sharp(bytes).extract(box).resize(WIDTH, HEIGHT).webp({ quality: 78, effort: 6 }).toFile(outPath);
   const photo = {
-    src: `/photos/posts/${slug}.webp`,
+    src: `/photos/posts/${name}.webp`,
     alt,
     author: c.author,
     license: c.license,
     licenseUrl: c.licenseUrl,
     source: c.source,
   };
-  console.log(`保存: ${outPath}\n\nfrontmatter に追加する行:\n\n${toFrontmatter(photo)}\n`);
+  if (id) {
+    console.log(`保存: ${outPath}\n\nfrontmatter の photos: に追加する項目(photos: が無ければ作る):\n\n${toPhotosItem({ id, ...photo })}\n\n本文の置きたい位置に単独の段落として書く:\n\n[[photo:${id}]]\n`);
+  } else {
+    console.log(`保存: ${outPath}\n\nfrontmatter に追加する行:\n\n${toFrontmatter(photo)}\n`);
+  }
 }
 
 const [cmd, ...args] = process.argv.slice(2);
@@ -109,10 +119,13 @@ try {
   } else if (cmd === 'pick') {
     const altIdx = args.indexOf('--alt');
     const alt = altIdx >= 0 ? args[altIdx + 1] : '';
-    const [index, slug] = args.filter((_, i) => i !== altIdx && i !== altIdx + 1);
-    await pick(Number(index), slug, alt);
+    const idIdx = args.indexOf('--id');
+    const id = idIdx >= 0 ? args[idIdx + 1] : '';
+    const skip = new Set([altIdx, altIdx + 1, idIdx, idIdx + 1]);
+    const [index, slug] = args.filter((_, i) => !skip.has(i));
+    await pick(Number(index), slug, alt, id);
   } else {
-    console.log('使い方:\n  node scripts/photo.mjs search "<query>" [--limit 8]\n  node scripts/photo.mjs pick <番号> <slug> --alt "<代替テキスト>"');
+    console.log('使い方:\n  node scripts/photo.mjs search "<query>" [--limit 8]\n  node scripts/photo.mjs pick <番号> <slug> --alt "<代替テキスト>"\n  node scripts/photo.mjs pick <番号> <slug> --id <id> --alt "<代替テキスト>"   (本文用)');
     process.exitCode = 1;
   }
 } catch (err) {

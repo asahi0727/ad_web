@@ -12,6 +12,14 @@ photo:
   license: "CC BY-SA 3.0"
   licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
   source: "https://commons.wikimedia.org/wiki/File:Airplane_wing_sky_and_clouds.jpg"
+photos:
+  - id: "check-in"
+    src: "/photos/posts/miles-basics-check-in.webp"
+    alt: "国際線出発フロアのチェックインカウンターが並ぶ空港ロビー"
+    author: "JKT-c"
+    license: "CC BY 3.0"
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/"
+    source: "https://commons.wikimedia.org/wiki/File:Chubu_Centrair_International_Airport_-_Check-in_Counter_-_01.JPG"
 ---
 
 「マイルを貯めるとタダで飛行機に乗れる」とよく聞きますが、何がどう貯まって、何に使えるのかは意外と分かりにくいものです。この記事では、マイルの仕組みを全体像から整理し、初めての人がつまずきやすいポイントをまとめます。
@@ -29,6 +37,8 @@ photo:
 | フライト | 搭乗距離と運賃種別に応じて加算 | 出張や帰省で飛行機によく乗る人 |
 | クレジットカード | 日常の支払いで貯める | 飛行機にはあまり乗らない人 |
 | ポイント交換 | 他社ポイントをマイルに交換 | すでにポイントを貯めている人 |
+
+[[photo:check-in]]
 
 多くの人にとって現実的なのは、クレジットカードとポイント交換の組み合わせです。飛行機に乗る機会が少なくても、日常の支払いを 1 枚のカードにまとめるだけで着実に貯まります。
 
