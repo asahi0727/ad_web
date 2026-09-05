@@ -36,7 +36,7 @@ export const siteConfig: SiteConfig = {
   adsense: { client: '', slot: '' },
   analytics: { ga4: '' },
   affiliate: {
-    rakutenTravel: { id: '' },
+    rakutenTravel: { id: '572e6e0a.18da062b.572e6e0b.79ef97d9' },
     jalan: { url: '' },
     expedia: { url: '' },
     amazon: { tag: '' },

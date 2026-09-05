@@ -7,7 +7,13 @@ function configWith(overrides: Partial<SiteConfig['affiliate']>): SiteConfig {
   return { ...siteConfig, affiliate: { ...siteConfig.affiliate, ...overrides } };
 }
 
-const empty = configWith({});
+// 実際の site.config.ts に ID が入っていても影響を受けないよう、明示的に空にする
+const empty = configWith({
+  rakutenTravel: { id: '' },
+  jalan: { url: '' },
+  expedia: { url: '' },
+  amazon: { tag: '' },
+});
 
 describe('isAffiliateProvider', () => {
   it('accepts known providers and rejects others', () => {
