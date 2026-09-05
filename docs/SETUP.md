@@ -16,6 +16,7 @@
 | Claude GitHub App のインストール | 済み(2026-09-05)。初回 PR #1 をマージ済み |
 | 楽天アフィリエイト ID の設定 | 済み(2026-09-05)。記事内の楽天トラベル枠が成果報酬付きリンクになっている |
 | お問い合わせフォーム(Google フォーム) | 済み(2026-09-05)。回答は Google フォームの「回答」タブに届く |
+| Search Console の確認タグ | サイトに設置済み(2026-09-05)。`site.config.ts` の `analytics.searchConsole` |
 
 ## 毎週やること(所要 5〜10 分)
 
@@ -73,7 +74,7 @@ AdSense や ASP の審査で「お問い合わせ手段」が求められるた�
 
 1. https://search.google.com/search-console/ を開き、「プロパティを追加」→「URL プレフィックス」に `https://asahi0727.github.io/ad_web/` を入れる。
 2. 所有権の確認は「HTML タグ」を選ぶ。表示される `<meta name="google-site-verification" content="...">` の `content` の値を控える。
-3. Claude Code に「Search Console の確認タグの content は ... です。サイトに入れて push してください」と頼む。反映後、Search Console の「確認」を押す。
+3. Claude Code に「Search Console の確認タグの content は ... です。サイトに入れて push してください」と頼む(`site.config.ts` の `analytics.searchConsole` に入る)。反映後、Search Console の「確認」を押す。
 4. 左メニュー「サイトマップ」に `sitemap-index.xml` と入力して送信する。
 
 ## 記事が増えたら(任意)
