@@ -5,6 +5,21 @@ pubDate: 2026-09-07
 category: aircraft
 tags: ["機内Wi-Fi", "アイテム", "初心者向け"]
 affiliate: ["amazon", "rakuten-travel"]
+photo:
+  src: "/photos/posts/inflight-wifi-basics.webp"
+  alt: "旅客機のエコノミークラス客室。座席が並び、前方にモニターが見える"
+  author: "N509FZ"
+  license: "CC BY-SA 4.0"
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Economy_class_cabin_of_B-2447_(20190717150152).jpg"
+photos:
+  - id: "sky"
+    src: "/photos/posts/inflight-wifi-basics-sky.webp"
+    alt: "雲海の上を飛ぶ旅客機の翼。海上や山岳地帯では地上アンテナ方式の電波が届きにくい"
+    author: "Արման Բարսեղյան"
+    license: "CC BY-SA 4.0"
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
+    source: "https://commons.wikimedia.org/wiki/File:View_from_the_airplane_window.jpg"
 ---
 
 長時間のフライトでも仕事の連絡を続けたい、動画配信を楽しみたいというときに頼りになるのが機内 Wi-Fi です。地上のオフィスや自宅と同じ感覚で使えると思われがちですが、機内 Wi-Fi は上空を飛ぶ飛行機ならではの仕組みでインターネットにつながっており、地上の通信とは違う特徴がいくつもあります。この記事では、機内 Wi-Fi がどのようにつながっているのか、接続までの流れ、使うときに気をつけたい点を整理します。
@@ -48,6 +63,8 @@ affiliate: ["amazon", "rakuten-travel"]
 ## 通信品質に影響する要因
 
 機内 Wi-Fi は地上の固定回線と違い、いくつかの要因で通信品質が変わりやすい仕組みです。代表的な要因を整理します。
+
+[[photo:sky]]
 
 | 要因 | 通信品質への影響 |
 | --- | --- |
