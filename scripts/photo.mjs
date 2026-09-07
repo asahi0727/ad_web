@@ -18,7 +18,7 @@
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
-import { cropBox, parsePickArgs, toCandidate, toFrontmatter, toPhotosItem } from './photo-lib.mjs';
+import { cropBox, parsePickArgs, parseSearchArgs, toCandidate, toFrontmatter, toPhotosItem } from './photo-lib.mjs';
 
 const UA = 'soratabi-techo/1.0 (https://github.com/asahi0727/ad_web)';
 const WORK = '.photo-candidates';
@@ -111,9 +111,7 @@ async function pick(index, slug, alt, id) {
 const [cmd, ...args] = process.argv.slice(2);
 try {
   if (cmd === 'search') {
-    const limitIdx = args.indexOf('--limit');
-    const limit = limitIdx >= 0 ? Number(args[limitIdx + 1]) : 8;
-    const query = args.filter((_, i) => i !== limitIdx && i !== limitIdx + 1).join(' ');
+    const { query, limit } = parseSearchArgs(args);
     if (!query) throw new Error('検索語を指定してください');
     await search(query, limit);
   } else if (cmd === 'pick') {
