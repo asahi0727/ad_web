@@ -5,6 +5,21 @@ pubDate: 2026-09-07
 category: miles
 tags: ["マイル", "特典航空券", "初心者向け"]
 affiliate: ["rakuten-travel", "amazon"]
+photo:
+  src: "/photos/posts/award-ticket-basics.webp"
+  alt: "夕暮れの空を飛ぶ旅客機の翼を機内の窓から見た風景"
+  author: "PierreSelim"
+  license: "CC BY-SA 3.0"
+  licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Embraer_190_-_Wing_and_winglet_at_sunset.jpg"
+photos:
+  - id: "board"
+    src: "/photos/posts/award-ticket-basics-board.webp"
+    alt: "空港の出発案内板。便名や行き先、搭乗ゲートが並ぶ"
+    author: "Tiia Monto"
+    license: "CC BY-SA 3.0"
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+    source: "https://commons.wikimedia.org/wiki/File:Departure_board_at_Geneva_Airport.jpg"
 ---
 
 貯めたマイルの使い道として最も人気が高いのが特典航空券です。通常の運賃を払わずに航空券を手に入れられる一方で、「必要マイル数はどう決まるのか」「いつ、どうやって予約すればいいのか」が分かりにくく、最初の一歩を踏み出せない人も多いのではないでしょうか。この記事では、特典航空券の仕組みを全体像から整理し、予約までの流れと注意点をまとめます。
@@ -27,7 +42,7 @@ affiliate: ["rakuten-travel", "amazon"]
 | 座席クラス | エコノミーよりビジネス・ファーストの方が多く必要 |
 | 提携便の利用有無 | 自社便のみか、提携便を含むかで表が分かれる場合がある |
 
-多くの航空会社は、区間や座席クラスごとに必要マイル数の目安を「特典航空券チャート」として公開しています。チャートには複数のマイル数が並んでいることがあり、これは空港到着後の空席状況によって適用される数が変わる仕組みになっているためです。同じ行き先でも、予約するタイミングや便によって必要マイル数が異なることは珍しくありません。
+多くの航空会社は、区間や座席クラスごとに必要マイル数の目安を「特典航空券チャート」として公開しています。チャートには複数のマイル数が並んでいることがあり、これは予約する時期や便の空席状況によって適用される数が変わる仕組みになっているためです。同じ行き先でも、予約するタイミングや便によって必要マイル数が異なることは珍しくありません。
 
 ### 座席クラスによる違い
 
@@ -40,6 +55,8 @@ affiliate: ["rakuten-travel", "amazon"]
 ## 予約までの流れ
 
 特典航空券の予約は、通常運賃の航空券とは少し異なる流れで進みます。おおまかな流れは次のとおりです。
+
+[[photo:board]]
 
 1. 保有マイル数と、行き先までの必要マイル数の目安を確認する
 2. 公式サイトやアプリの特典航空券専用の検索画面で空席状況を調べる

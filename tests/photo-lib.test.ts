@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cropBox, normalizeLicense, parsePickArgs, stripHtml, toCandidate, toFrontmatter, toPhotosItem } from '../scripts/photo-lib.mjs';
+import { cropBox, normalizeLicense, parsePickArgs, parseSearchArgs, stripHtml, toCandidate, toFrontmatter, toPhotosItem } from '../scripts/photo-lib.mjs';
 
 function page(overrides: Record<string, unknown> = {}, meta: Record<string, string> = {}) {
   const extmetadata = Object.fromEntries(Object.entries({ LicenseShortName: 'CC BY 4.0', Artist: 'Someone', ...meta }).map(([k, v]) => [k, { value: v }]));
@@ -81,5 +81,21 @@ describe('toPhotosItem', () => {
     const yaml = toPhotosItem({ id: 'x', src: '/photos/posts/s-x.webp', alt: 'a', author: 'b', license: 'CC0', licenseUrl: 'https://l', source: 'https://s' });
     expect(yaml.split(String.fromCharCode(10))[0]).toBe('  - id: "x"');
     expect(yaml).toContain('    src: "/photos/posts/s-x.webp"');
+  });
+});
+
+describe('parseSearchArgs', () => {
+  it('keeps the whole query when --limit is absent', () => {
+    expect(parseSearchArgs(['boarding pass'])).toEqual({ query: 'boarding pass', limit: 8 });
+    expect(parseSearchArgs(['airport', 'lounge'])).toEqual({ query: 'airport lounge', limit: 8 });
+  });
+
+  it('strips --limit and its value from the query', () => {
+    expect(parseSearchArgs(['--limit', '4', 'airport lounge'])).toEqual({ query: 'airport lounge', limit: 4 });
+    expect(parseSearchArgs(['airport lounge', '--limit', '12'])).toEqual({ query: 'airport lounge', limit: 12 });
+  });
+
+  it('returns an empty query when nothing is given', () => {
+    expect(parseSearchArgs([]).query).toBe('');
   });
 });

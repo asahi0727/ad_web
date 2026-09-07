@@ -118,3 +118,11 @@ export function parsePickArgs(args) {
   const [index, slug] = positional;
   return { index: Number(index), slug: slug ?? '', ...opts };
 }
+
+/** search コマンドの引数から検索語と件数を取り出す。--limit が無いときも語を落とさない */
+export function parseSearchArgs(args) {
+  const limitIdx = args.indexOf('--limit');
+  const limit = limitIdx >= 0 ? Number(args[limitIdx + 1]) : 8;
+  const words = limitIdx >= 0 ? args.filter((_, i) => i !== limitIdx && i !== limitIdx + 1) : args;
+  return { query: words.join(' ').trim(), limit };
+}
