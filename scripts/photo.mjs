@@ -33,8 +33,12 @@ async function fetchJson(url) {
 }
 
 async function fetchBytes(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  // thumb.wikimedia.org と upload.wikimedia.org は同じパスで同じ内容を返す。
+  // 実行環境によっては thumb.wikimedia.org への接続が通らないことがあるため、
+  // upload.wikimedia.org に読み替えて取得する。
+  const normalized = url.replace('://thumb.wikimedia.org/', '://upload.wikimedia.org/');
+  const res = await fetch(normalized, { headers: { 'User-Agent': UA } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${normalized}`);
   return Buffer.from(await res.arrayBuffer());
 }
 
