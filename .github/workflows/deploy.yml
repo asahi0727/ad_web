@@ -18,9 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # 独自ドメインに移行したら SITE_URL をそのドメインに、BASE_PATH を / に変える
-      SITE_URL: https://${{ github.repository_owner }}.github.io
-      BASE_PATH: /${{ github.event.repository.name }}
+      # 独自ドメイン(public/CNAME と同じ値)。github.io に戻すときは
+      # SITE_URL を https://<owner>.github.io、BASE_PATH を /<repo> にする
+      SITE_URL: https://soratabi-techo.com
+      BASE_PATH: /
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

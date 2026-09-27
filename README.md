@@ -4,7 +4,7 @@
 
 ## 公開場所
 
-- **公開サイト**: https://asahi0727.github.io/ad_web/
+- **公開サイト**: https://soratabi-techo.com/ (独自ドメイン。旧 URL https://asahi0727.github.io/ad_web/ からは自動で転送)
 - ホスティング: GitHub Pages(このリポジトリの `main` に push すると GitHub Actions が自動でビルドして公開)
 - リポジトリ: https://github.com/asahi0727/ad_web
 - 記事作成ルーチン: https://claude.ai/code/routines (weekly-travel-post、毎週月曜 9:00 JST)

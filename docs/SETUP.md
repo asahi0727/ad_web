@@ -2,7 +2,7 @@
 
 このサイトは 2026-09-05 に公開済みです。この手引きは「これから何をすればいいか」を、初めての人向けに画面操作の単位で書いています。
 
-- 公開 URL: https://asahi0727.github.io/ad_web/
+- 公開 URL: https://soratabi-techo.com/ (独自ドメイン。Xserver ドメインで取得、DNS も Xserver 側で設定)
 - リポジトリ: https://github.com/asahi0727/ad_web
 - 記事作成ルーチン: https://claude.ai/code/routines (毎週月曜 9:00 JST に記事の PR を作る)
 
@@ -66,13 +66,13 @@ AdSense や ASP の審査で「お問い合わせ手段」が求められるた�
    お問い合わせフォームの埋め込みURLは https://docs.google.com/forms/d/e/.../viewform?embedded=true です。site.config.ts に設定して main に push してください
    ```
 
-4. 数分後、https://asahi0727.github.io/ad_web/contact/ にフォームが表示されていれば完了。
+4. 数分後、https://soratabi-techo.com/contact/ にフォームが表示されていれば完了。
 
 ### C. Google Search Console に登録する(無料、任意、10 分)
 
 検索エンジンに記事を早く見つけてもらうための設定です。
 
-1. https://search.google.com/search-console/ を開き、「プロパティを追加」→「URL プレフィックス」に `https://asahi0727.github.io/ad_web/` を入れる。
+1. https://search.google.com/search-console/ を開き、「プロパティを追加」→「URL プレフィックス」に `https://soratabi-techo.com/` を入れる。
 2. 所有権の確認は「HTML タグ」を選ぶ。表示される `<meta name="google-site-verification" content="...">` の `content` の値を控える。
 3. Claude Code に「Search Console の確認タグの content は ... です。サイトに入れて push してください」と頼む(`site.config.ts` の `analytics.searchConsole` に入る)。反映後、Search Console の「確認」を押す。
 4. 左メニュー「サイトマップ」に `sitemap-index.xml` と入力して送信する。
