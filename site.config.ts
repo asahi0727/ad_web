@@ -36,7 +36,7 @@ export const siteConfig: SiteConfig = {
   author: 'そらたび手帖 編集部',
   lang: 'ja',
   contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSebUkAJvpt1Ze3xS_BglCgRbj31ClMD-PFq8FQMy6Qy1Xe6_w/viewform?embedded=true',
-  adsense: { client: '', slot: '' },
+  adsense: { client: 'ca-pub-1184945680070085', slot: '' },
   analytics: { ga4: 'G-C3C5SLH96S', searchConsole: ['QDNjb-Gi3J7PPb8Td2MYO8QkVoYsmQ9I8iK-_vl8ACA', 'fHSy6j27rj3HobNGrpG4-gPl7AKEJbYB2Dmbkg0rwVk'] },
   affiliate: {
     rakutenTravel: { id: '572e6e0a.18da062b.572e6e0b.79ef97d9' },
