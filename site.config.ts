@@ -15,7 +15,8 @@ export interface SiteConfig {
     /** 例: 'G-XXXXXXXXXX'。空ならタグを出さない */
     ga4: string;
     /** Google Search Console の所有権確認タグの content 値。空ならタグを出さない */
-    searchConsole: string;
+    /** Search Console の HTML タグの content。プロパティごとに値が違うことがあるので複数可 */
+    searchConsole: string[];
   };
   affiliate: {
     /** 楽天アフィリエイト ID。例: '0a1b2c3d.e4f5g6h7.0a1b2c3d.i8j9k0l1' */
@@ -36,7 +37,7 @@ export const siteConfig: SiteConfig = {
   lang: 'ja',
   contactFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSebUkAJvpt1Ze3xS_BglCgRbj31ClMD-PFq8FQMy6Qy1Xe6_w/viewform?embedded=true',
   adsense: { client: '', slot: '' },
-  analytics: { ga4: 'G-C3C5SLH96S', searchConsole: 'QDNjb-Gi3J7PPb8Td2MYO8QkVoYsmQ9I8iK-_vl8ACA' },
+  analytics: { ga4: 'G-C3C5SLH96S', searchConsole: ['QDNjb-Gi3J7PPb8Td2MYO8QkVoYsmQ9I8iK-_vl8ACA', 'fHSy6j27rj3HobNGrpG4-gPl7AKEJbYB2Dmbkg0rwVk'] },
   affiliate: {
     rakutenTravel: { id: '572e6e0a.18da062b.572e6e0b.79ef97d9' },
     jalan: { url: '' },
