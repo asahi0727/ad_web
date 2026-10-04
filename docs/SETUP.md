@@ -98,3 +98,10 @@ gh repo create <リポジトリ名> --public --source=. --push
 ```
 
 `main` ブランチにいる状態で実行する。公開 URL は `https://<ユーザー名>.github.io/<リポジトリ名>/` になり、ワークフローがリポジトリ名を自動で `BASE_PATH` に使う。作成後、Settings → Pages → Source を **GitHub Actions** にする。
+
+## 2026-10-04 時点の設定状況
+
+- 独自ドメイン: https://soratabi-techo.com/ (Xserver ドメインで取得。DNS は Xserver ドメインの DNS 設定、ネームサーバーは「XServer Domain」プリセット)。GitHub Pages の HTTPS 強制は ON
+- Search Console: `https://soratabi-techo.com/` を URL プレフィックスで登録済み。サイトマップ `sitemap-index.xml` 送信済み。確認タグは `site.config.ts` の `analytics.searchConsole`(配列)
+- GA4: 測定 ID は `site.config.ts` の `analytics.ga4`。データストリームの URL は新ドメインに更新済み
+- AdSense: サイト運営者 ID は `site.config.ts` の `adsense.client`、`public/ads.txt` あり。審査リクエスト済み(2026-10-04)。承認後に広告ユニットを作り `adsense.slot` を設定すると記事内の `[[ad]]` が表示される
