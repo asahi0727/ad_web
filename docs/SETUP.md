@@ -4,7 +4,7 @@
 
 - 公開 URL: https://soratabi-techo.com/ (独自ドメイン。Xserver ドメインで取得、DNS も Xserver 側で設定)
 - リポジトリ: https://github.com/asahi0727/ad_web
-- 記事作成ルーチン: https://claude.ai/code/routines (毎週月曜 9:00 JST に記事の PR を作る)
+- 記事作成ルーチン: https://claude.ai/code/routines (毎週月曜・木曜 9:00 JST に記事の PR を作る)
 
 ## 済んでいること
 
@@ -12,7 +12,7 @@
 |---|---|
 | GitHub リポジトリの作成と push | 済み |
 | GitHub Pages の有効化(ソース: GitHub Actions) | 済み。main に push すると数分で自動公開 |
-| 記事作成ルーチンの作成 | 済み(weekly-travel-post、毎週月曜 9:00 JST、claude-sonnet-5) |
+| 記事作成ルーチンの作成 | 済み(weekly-travel-post、毎週月曜・木曜 9:00 JST、claude-sonnet-5) |
 | Claude GitHub App のインストール | 済み(2026-09-05)。初回 PR #1 をマージ済み |
 | 楽天アフィリエイト ID の設定 | 済み(2026-09-05)。記事内の楽天トラベル枠が成果報酬付きリンクになっている |
 | お問い合わせフォーム(Google フォーム) | 済み(2026-09-05)。回答は Google フォームの「回答」タブに届く |
