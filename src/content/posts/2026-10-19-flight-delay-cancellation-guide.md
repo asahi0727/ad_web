@@ -7,19 +7,19 @@ tags: ["遅延", "欠航", "国内線", "初心者向け"]
 affiliate: ["rakuten-travel", "amazon"]
 photo:
   src: "/photos/posts/flight-delay-cancellation-guide.webp"
-  alt: "遅延により時刻が変更された便のステータスが表示された空港の出発案内板"
-  author: "Bobby Hidy"
-  license: "CC BY-SA 2.0"
-  licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/"
-  source: "https://commons.wikimedia.org/wiki/File:Departures_board_at_Miami_Airport_in_Florida,_US.jpg"
+  alt: "空港の出発案内板に並ぶ行き先と出発時刻の表示"
+  author: "Redolta"
+  license: "CC0"
+  licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/"
+  source: "https://commons.wikimedia.org/wiki/File:Departure_Board_at_ORD.jpg"
 photos:
   - id: "waiting"
     src: "/photos/posts/flight-delay-cancellation-guide-waiting.webp"
-    alt: "大勢の乗客が座って順番や搭乗案内を待つ空港ターミナルの待合エリア"
-    author: "Tom Murphy VII"
-    license: "CC BY-SA 3.0"
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
-    source: "https://commons.wikimedia.org/wiki/File:LHR_Terminal_3_waiting_area.jpg"
+    alt: "空港の搭乗口前に並ぶ待合席。遅延時はここで案内を待つことが多い"
+    author: "Nic McPhee"
+    license: "CC BY-SA 2.0"
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/"
+    source: "https://commons.wikimedia.org/wiki/File:MSP_Terminal_2_gate_seating.jpg"
 ---
 
 搭乗予定の便が遅延したり欠航になったりすると、何をどの順番で確認すればいいのか分からず戸惑ってしまう人は少なくありません。「振替」「払い戻し」「補償」という言葉を聞いたことはあっても、実際にどの窓口で何を選べばいいのかは、当日になって初めて考えることが多いものです。この記事では、遅延・欠航が起きたときの基本的な考え方と、当日の判断の目安を整理します。
