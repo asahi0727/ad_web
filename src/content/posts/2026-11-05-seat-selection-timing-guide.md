@@ -22,11 +22,11 @@ photos:
     source: "https://commons.wikimedia.org/wiki/File:Thai_Airways_Boeing_747-200_aircraft_seats_economy.JPG"
   - id: "gate"
     src: "/photos/posts/seat-selection-timing-guide-gate.webp"
-    alt: "搭乗ゲート前の待合エリアに並ぶ座席"
-    author: "Kolforn"
-    license: "CC BY-SA 4.0"
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/"
-    source: "https://commons.wikimedia.org/wiki/File:2017-12-15_Departure_Hall,_Norwich_Airport_(2).JPG"
+    alt: "搭乗口の番号と便名を示す空港の搭乗ゲートの案内表示"
+    author: "Iv0202"
+    license: "CC BY-SA 3.0"
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/"
+    source: "https://commons.wikimedia.org/wiki/File:Boarding_Gate_of_Suvarnabhumi_Airport.JPG"
 ---
 
 座席指定ができるタイミングは、航空会社や運賃タイプ、予約の方法によって違います。「あとで指定すればいい」と思っていたら、気づいたときには窓側も通路側も埋まっていた、という経験がある人は少なくありません。この記事では、予約から搭乗までの流れに沿って、座席指定をいつ、どう考えればよいかを整理します。
